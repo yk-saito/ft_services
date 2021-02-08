@@ -1,0 +1,28 @@
+# init count
+COUNT=0
+
+if [ -z "$INTERVAL" ]; then
+    INTERVAL=3
+fi
+
+# (add)
+if [ -f save.dat ]; then
+    COUNT=`cat save.dat`
+    rm -f  save.dat
+fi
+
+# (add2)
+save()  {
+    echo $COUNT > save.dat
+    exit 0
+}
+trap save TERM
+
+while [ true ];
+do
+    # TM=`date|awk '{print $4}'`
+    printf "[%s]" $COUNT
+    echo `date '+%y/%m/%d %H:%M:%S'` 
+    let COUNT=COUNT+1
+    sleep $INTERVAL
+done
