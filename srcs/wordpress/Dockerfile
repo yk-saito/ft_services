@@ -1,13 +1,18 @@
 FROM alpine:latest
 
 RUN	apk update && \
-	apk add php-fpm php7-json php7-mysqli php7-curl
+	apk add nginx php-fpm php7-json php7-mysqli php7-curl
 
+#nginx setting file
+COPY ./srcs/default.conf /etc/nginx/conf.d/default.conf
+#worpdress setting file
 COPY ./srcs/wp-config.php /var/www/html/wordpress/
 COPY ./srcs/www.conf /etc/php7/php-fpm.d/www.conf
 COPY ./srcs/setup.sh /tmp/
 
-CMD ["chmod", "+x", "/tmp/setup.sh"]
+RUN chmod 755 /tmp/setup.sh
+
+CMD ["/tmp/setup.sh"]
 
 EXPOSE 5050
 
