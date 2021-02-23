@@ -6,8 +6,8 @@ RUN set -eux; \
 
 RUN set -eux; \
 		/usr/bin/ssh-keygen -A; \
-    	adduser -D admin; \
-    	echo "admin:admin" | chpasswd
+    	adduser -D admin42; \
+    	echo "admin42:admin42" | chpasswd
 
 COPY ./srcs/default.conf /etc/nginx/conf.d/default.conf
 COPY ./srcs/index.html /var/www/localhost/htdocs/
