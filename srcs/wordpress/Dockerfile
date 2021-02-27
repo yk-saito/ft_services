@@ -6,7 +6,7 @@ RUN	apk update && \
 #nginx setting file
 COPY ./srcs/default.conf /etc/nginx/conf.d/default.conf
 #worpdress setting file
-COPY ./srcs/wp-config.php /var/www/html/wordpress/
+COPY ./srcs/wp-config.php /var/www/localhost/htdocs/wordpress/
 COPY ./srcs/www.conf /etc/php7/php-fpm.d/www.conf
 COPY ./srcs/setup.sh /tmp/
 

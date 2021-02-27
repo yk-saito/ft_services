@@ -1,0 +1,4 @@
+FLUSH PRIVILEGES;
+CREATE DATABASE wordpress_db;
+GRANT ALL ON wordpress_db.* TO 'admin42'@'%' IDENTIFIED BY 'admin42' WITH GRANT OPTION;
+DROP USER ''@localhost;

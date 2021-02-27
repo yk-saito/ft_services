@@ -2,11 +2,18 @@ FROM alpine:latest
 
 RUN apk update && \
     apk add mysql mysql-client
-RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql
 
-RUN mysql -e "CREATE DATABASE wordpress";
-RUN mysql -e "GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'localhost' IDENTIFIED BY 'wordpress';"
+COPY ./srcs/my.cnf /etc/
+COPY ./srcs/setup.sh ./srcs/init.sql /tmp/
+
+RUN mkdir -p /run/mysqld
+
+# MySQL init datadir and make system table
+RUN mysql_install_db
+
+EXPOSE 3306
 
 #start mysql daemon
-ENTRYPOINT [ "/usr/bin/mysqld_safe" ]
-CMD [ "--datadir=/var/lib/mysql" ]
+CMD [ "/usr/bin/mysqld" ]
+
+#CMD ["/tmp/setup.sh"]
