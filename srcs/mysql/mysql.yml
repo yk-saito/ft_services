@@ -1,0 +1,34 @@
+# Persistent volume
+
+# Pod
+apiVersion: apps/v1
+kind: Pod
+metadata:
+ name: mysql-pod
+spec:
+ containers:
+ - name: mysql
+   image: mysql:0.1
+
+# Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: mysql-deploy
+spec:
+ replicas:	1
+ selector:
+  matchLabels:
+   app: mysql
+ template:
+  metadata:
+   labels:
+    app: mysql
+  spec:
+   containers:
+   - name: mysql
+     image: mysql:0.1
+     ports:
+     - containerPort: 3306
+
+# service: Mediate access to pods.
