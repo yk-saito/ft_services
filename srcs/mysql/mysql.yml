@@ -1,17 +1,5 @@
 # Persistent volume
 
-# Pod
-#apiVersion: apps/v1
-#kind: Pod
-#metadata:
-# name: mysql-pod
-#spec:
-# containers:
-# - name: mysql
-#   image: mysql:services
-
----
-
 # Deployment
 apiVersion: apps/v1
 kind: Deployment
@@ -21,11 +9,11 @@ spec:
  replicas:	1
  selector:
   matchLabels:
-   app: mysql
+   app: wordrpess
  template:
   metadata:
    labels:
-    app: mysql
+    app: wordrpess
   spec:
    containers:
    - name: mysql
@@ -33,5 +21,18 @@ spec:
      imagePullPolicy: Never
      ports:
      - containerPort: 3306
-
+---
 # service: Mediate access to pods.
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service
+  labels:
+   app: mysql
+spec:
+  type: ClusterIP
+  ports:
+  - port: 3306
+  selector:
+    app: wordrpess
+    tier: mysql
