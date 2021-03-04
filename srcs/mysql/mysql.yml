@@ -1,7 +1,6 @@
 # Persistent volume
 
 # Pod
-<<<<<<< HEAD
 #apiVersion: apps/v1
 #kind: Pod
 #metadata:
@@ -12,16 +11,6 @@
 #   image: mysql:services
 
 ---
-=======
-apiVersion: apps/v1
-kind: Pod
-metadata:
- name: mysql-pod
-spec:
- containers:
- - name: mysql
-   image: mysql:0.1
->>>>>>> b1ece79ebb11d38a07f49cc5bc7ae6cfe05694d2
 
 # Deployment
 apiVersion: apps/v1
@@ -40,12 +29,8 @@ spec:
   spec:
    containers:
    - name: mysql
-<<<<<<< HEAD
      image: mysql:services
      imagePullPolicy: Never
-=======
-     image: mysql:0.1
->>>>>>> b1ece79ebb11d38a07f49cc5bc7ae6cfe05694d2
      ports:
      - containerPort: 3306
 
