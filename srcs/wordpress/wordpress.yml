@@ -4,7 +4,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: mysql-deploy
+ name: wordpress-deploy
 spec:
  replicas:	1
  selector:
@@ -16,23 +16,27 @@ spec:
     app: wordrpess
   spec:
    containers:
-   - name: mysql
-     image: mysql:ysaito
+   - name: wordpress
+     image: wordpress:ysaito
      imagePullPolicy: Never
      ports:
-     - containerPort: 3306
+     - containerPort: 80
+       name: wordpress-port
 ---
 # service: Mediate access to pods.
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql-service
+  name: wordpress-service
   labels:
-   app: mysql
+   app: wordpress
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   ports:
-  - port: 3306
+  - port: 5050
+    name: wordpress-port
+#    protocol: TCP
+    targetPort: 80
   selector:
     app: wordrpess
-    tier: mysql
+#    tier: mysql
