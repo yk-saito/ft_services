@@ -1,0 +1,42 @@
+# Persistent volume
+
+# Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: wordpress-deploy
+spec:
+ replicas:	1
+ selector:
+  matchLabels:
+   app: wordrpess
+ template:
+  metadata:
+   labels:
+    app: wordrpess
+  spec:
+   containers:
+   - name: wordpress
+     image: wordpress:ysaito
+     imagePullPolicy: Never
+     ports:
+     - containerPort: 80
+       name: wordpress-port
+---
+# service: Mediate access to pods.
+apiVersion: v1
+kind: Service
+metadata:
+  name: wordpress-service
+  labels:
+   app: wordpress
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 5050
+    name: wordpress-port
+#    protocol: TCP
+    targetPort: 80
+  selector:
+    app: wordrpess
+#    tier: mysql
