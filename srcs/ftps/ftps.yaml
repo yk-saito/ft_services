@@ -4,39 +4,40 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: wordpress-deploy
+ name: ftps-deploy
 spec:
  replicas:	1
  selector:
   matchLabels:
-   app: wordrpess
+   app: ftps
  template:
   metadata:
    labels:
-    app: wordrpess
+    app: ftps
   spec:
    containers:
-   - name: wordpress
-     image: wordpress:ysaito
+   - name: ftps
+     image: ftps:ysaito
      imagePullPolicy: Never
      ports:
-     - containerPort: 80
-       name: wordpress-port
+     - containerPort: 21
+    # - containerPort: 443
+    #   name: https
+
 ---
 # service: Mediate access to pods.
 apiVersion: v1
 kind: Service
 metadata:
-  name: wordpress-service
+  name: ftps-svc
+  #annotations:
+  #  metallb.universe.tf/address-pool: default
   labels:
-   app: wordpress
+   app: ftps
 spec:
   type: LoadBalancer
+  #loadBalancerIP: 192.168.1.240
   ports:
-  - port: 5050
-    name: wordpress-port
-#    protocol: TCP
-    targetPort: 80
+  - port: 21
   selector:
-    app: wordrpess
-#    tier: mysql
+    app: ftps

@@ -20,14 +20,14 @@ spec:
      image: wordpress:ysaito
      imagePullPolicy: Never
      ports:
-     - containerPort: 80
+     - containerPort: 5050
        name: wordpress-port
 ---
 # service: Mediate access to pods.
 apiVersion: v1
 kind: Service
 metadata:
-  name: wordpress-service
+  name: wordpress-svc
   labels:
    app: wordpress
 spec:
@@ -35,8 +35,6 @@ spec:
   ports:
   - port: 5050
     name: wordpress-port
-#    protocol: TCP
-    targetPort: 80
+    targetPort: 5050
   selector:
     app: wordrpess
-#    tier: mysql
