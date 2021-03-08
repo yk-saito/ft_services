@@ -31,4 +31,10 @@ kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/${METALLB_VER
 kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 kubectl apply -f srcs/metallb.yaml
 kubectl apply -f srcs/nginx/nginx.yaml
+
 echo "${GREEN}Successfully execute kubectl. "
+
+minikube service nginx-service
+
+# Open Kubernetes Dashboard
+minikube dashboard
