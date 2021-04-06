@@ -13,6 +13,6 @@ COPY ./srcs/setup.sh /tmp/
 
 RUN chmod 755 /tmp/setup.sh
 
-CMD ["tmp/setup.sh"]
+CMD ["/tmp/setup.sh"]
 
 EXPOSE 21 21000-21010

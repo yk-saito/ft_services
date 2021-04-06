@@ -9,11 +9,12 @@ spec:
  replicas:	1
  selector:
   matchLabels:
-   app: wordrpess
+   app: mysql
  template:
   metadata:
+   name: mysql-pod
    labels:
-    app: wordrpess
+    app: mysql
   spec:
    containers:
    - name: mysql
@@ -26,16 +27,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql-service
+  name: mysql-svc
   labels:
    app: mysql
 spec:
   type: ClusterIP
   ports:
-  - name: mysql-port
+  - name: mysql
     port: 3306
-    protocol: TCP
     targetPort: 3306
   selector:
-    app: wordrpess
-    tier: mysql
+    app: mysql

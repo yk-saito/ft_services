@@ -12,6 +12,7 @@ spec:
    app: wordrpess
  template:
   metadata:
+   name: wordpress-pod
    labels:
     app: wordrpess
   spec:
@@ -21,20 +22,22 @@ spec:
      imagePullPolicy: Never
      ports:
      - containerPort: 5050
-       name: wordpress-port
 ---
 # service: Mediate access to pods.
 apiVersion: v1
 kind: Service
 metadata:
   name: wordpress-svc
+  annotations:
+   metallb.universe.tf/allow-shared-ip: ft_svcs
   labels:
    app: wordpress
 spec:
   type: LoadBalancer
+  loadBalancerIP: 192.168.1.240
   ports:
-  - port: 5050
-    name: wordpress-port
+  - name: wordpress
+    port: 5050
     targetPort: 5050
   selector:
     app: wordrpess
