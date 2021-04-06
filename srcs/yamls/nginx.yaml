@@ -34,12 +34,12 @@ kind: Service
 metadata:
   name: nginx-svc
   annotations:
-   metallb.universe.tf/allow-shared-ip: ft_svcs
+   metallb.universe.tf/allow-shared-ip: ft_services
   labels:
    app: nginx
 spec:
   type: LoadBalancer
-  loadBalancerIP: 172.17.0.3
+  loadBalancerIP: 192.168.11.11
   ports:
   - name: http
     port: 80

@@ -4,40 +4,39 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: wordpress-deploy
+ name: grafana-deploy
 spec:
  replicas:	1
  selector:
   matchLabels:
-   app: wordrpess
+   app: grafana
  template:
   metadata:
-   name: wordpress-pod
+   name: grafana-pod
    labels:
-    app: wordrpess
+    app: grafana
   spec:
    containers:
-   - name: wordpress
-     image: wordpress:ysaito
+   - name: grafana
+     image: grafana:ysaito
      imagePullPolicy: Never
      ports:
-     - containerPort: 5050
+     - containerPort: 3000
 ---
 # service: Mediate access to pods.
 apiVersion: v1
 kind: Service
 metadata:
-  name: wordpress-svc
+  name: grafana-svc
   annotations:
    metallb.universe.tf/allow-shared-ip: ft_services
   labels:
-   app: wordpress
+   app: grafana
 spec:
   type: LoadBalancer
   loadBalancerIP: 192.168.11.11
   ports:
-  - name: wordpress
-    port: 5050
-    targetPort: 5050
+  - port: 3000
+    targetPort: 3000
   selector:
-    app: wordrpess
+    app: grafana
