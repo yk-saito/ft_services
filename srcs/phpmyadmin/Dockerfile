@@ -6,7 +6,7 @@
 #    By: ysaito <ysaito@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 17:32:09 by ysaito            #+#    #+#              #
-#    Updated: 2021/04/06 17:32:16 by ysaito           ###   ########.fr        #
+#    Updated: 2021/04/07 16:50:12 by ysaito           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ RUN set -eux;\
 		apk update; \
 		apk add --no-cache \
 			nginx \
+			openssl \
 			php-fpm php7-json php7-mysqli php7-curl php7-iconv php7-mbstring php7-session;
 
 #nginx setting file
