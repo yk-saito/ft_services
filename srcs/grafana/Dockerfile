@@ -6,19 +6,23 @@
 #    By: ysaito <ysaito@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 17:31:42 by ysaito            #+#    #+#              #
-#    Updated: 2021/04/06 17:31:49 by ysaito           ###   ########.fr        #
+#    Updated: 2021/04/08 20:56:02 by ysaito           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FROM alpine:3.12
 
+ENV GRAFANA_VER=7.4.3
+
 RUN set -eux; \
         apk update; \
         apk add --no-cache wget
 RUN set -eux; \
-        wget https://dl.grafana.com/enterprise/release/grafana-enterprise-7.4.3.linux-amd64.tar.gz; \
-        tar -zxvf grafana-enterprise-7.4.3.linux-amd64.tar.gz
-RUN mkdir /lib64 && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2
+        wget https://dl.grafana.com/enterprise/release/grafana-enterprise-${GRAFANA_VER}.linux-amd64.tar.gz; \
+        mkdir -p /grafana; \
+        tar -zxvf grafana-enterprise-${GRAFANA_VER}.linux-amd64.tar.gz --strip-components=1 -C /grafana/; \
+        rm -r grafana-enterprise-${GRAFANA_VER}.linux-amd64.tar.gz; \
+        mkdir /lib64 && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2
 
 EXPOSE 3000
 

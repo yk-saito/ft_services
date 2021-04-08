@@ -40,8 +40,8 @@ kubectl apply -f ./srcs/yamls/mysql.yaml
 kubectl apply -f ./srcs/yamls/phpmyadmin.yaml
 kubectl apply -f ./srcs/yamls/wordpress.yaml
 kubectl apply -f ./srcs/yamls/ftps.yaml
-kubectl apply -f ./srcs/influxdb/influxdb.yaml
-kubectl apply -f ./srcs/grafana/grafana.yaml
+kubectl apply -f ./srcs/yamls/influxdb.yaml
+kubectl apply -f ./srcs/yamls/grafana.yaml
 
 echo "${GREEN}Successfully execute kubectl.${COLOR_RESET}"
 
