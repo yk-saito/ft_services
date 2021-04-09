@@ -6,7 +6,7 @@
 #    By: ysaito <ysaito@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 17:31:42 by ysaito            #+#    #+#              #
-#    Updated: 2021/04/08 20:56:02 by ysaito           ###   ########.fr        #
+#    Updated: 2021/04/09 14:42:07 by ysaito           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,8 @@ RUN set -eux; \
         tar -zxvf grafana-enterprise-${GRAFANA_VER}.linux-amd64.tar.gz --strip-components=1 -C /grafana/; \
         rm -r grafana-enterprise-${GRAFANA_VER}.linux-amd64.tar.gz; \
         mkdir /lib64 && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2
+
+# /grafana/conf/provisioning/datasources
 
 EXPOSE 3000
 
