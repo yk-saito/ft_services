@@ -6,7 +6,7 @@
 #    By: ysaito <ysaito@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 17:31:42 by ysaito            #+#    #+#              #
-#    Updated: 2021/04/09 14:42:07 by ysaito           ###   ########.fr        #
+#    Updated: 2021/04/09 15:13:39 by ysaito           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,4 +28,4 @@ RUN set -eux; \
 
 EXPOSE 3000
 
-CMD [ "/grafana/bin/grafana-server --config=/grafana/conf/defaults.ini --homepath=/grafana" ]
+CMD [ "/grafana/bin/grafana-server", "--config=/grafana/conf/defaults.ini",  "--homepath=/grafana" ]
