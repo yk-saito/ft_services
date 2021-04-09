@@ -6,7 +6,7 @@
 #    By: ysaito <ysaito@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 17:31:42 by ysaito            #+#    #+#              #
-#    Updated: 2021/04/09 18:33:09 by ysaito           ###   ########.fr        #
+#    Updated: 2021/04/09 20:09:58 by ysaito           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,12 +28,12 @@ RUN set -eux; \
 COPY ./srcs/datasources/datasource.yaml /var/lib/grafana/conf/provisioning/datasources/
 COPY ./srcs/dashboards/dashboard.yaml /var/lib/grafana/conf/provisioning/dashboards
 #COPY ./srcs/dashboards/ftps.json /var/lib/grafana/conf/provisioning/dashboards
-#COPY    ./srcs/dashboards/grafana.json /var/lib/grafana/conf/provisioning/dashboards
-#COPY    ./srcs/dashboards/influxdb.json /var/lib/grafana/conf/provisioning/dashboards
-#COPY    ./srcs/dashboards/mysql.json /var/lib/grafana/conf/provisioning/dashboards
-#COPY ./srcs/dashboards/panel.json /var/lib/grafana/conf/provisioning/dashboards/nginx.json
-#COPY ./srcs/dashboards/panel2.json /var/lib/grafana/conf/provisioning/dashboards/phpmyadmin.json
-#COPY    ./srcs/dashboards/wordpress.json /var/lib/grafana/conf/provisioning/dashboards
+#COPY ./srcs/dashboards/grafana.json /var/lib/grafana/conf/provisioning/dashboards
+#COPY ./srcs/dashboards/influxdb.json /var/lib/grafana/conf/provisioning/dashboards
+#COPY ./srcs/dashboards/mysql.json /var/lib/grafana/conf/provisioning/dashboards
+COPY ./srcs/dashboards/nginx.json /var/lib/grafana/conf/provisioning/dashboards/nginx.json
+#COPY ./srcs/dashboards/phpmyadmin.json /var/lib/grafana/conf/provisioning/dashboards/phpmyadmin.json
+#COPY ./srcs/dashboards/wordpress.json /var/lib/grafana/conf/provisioning/dashboards
 
 EXPOSE 3000
 

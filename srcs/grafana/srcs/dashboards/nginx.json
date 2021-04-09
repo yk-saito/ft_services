@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 3,
+  "id": 1,
   "links": [],
   "panels": [
     {
@@ -119,12 +119,12 @@
     "list": []
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
-  "title": "mysql",
-  "uid": "tEisyjlGk",
-  "version": 1
+  "title": "nginx",
+  "uid": "orRHrjlMz",
+  "version": 2
 }

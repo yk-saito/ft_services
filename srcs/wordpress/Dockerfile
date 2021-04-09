@@ -6,14 +6,17 @@
 #    By: ysaito <ysaito@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 17:32:19 by ysaito            #+#    #+#              #
-#    Updated: 2021/04/07 16:44:55 by ysaito           ###   ########.fr        #
+#    Updated: 2021/04/09 21:16:04 by ysaito           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FROM alpine:3.12
 
 RUN	apk update && \
-	apk add --no-cache nginx openssl php-fpm php7-json php7-mysqli php7-curl
+	apk add --no-cache \
+		nginx \
+		openssl \
+		php-fpm php7-json php7-mysqli php7-curl php7-phar php7-iconv
 
 #nginx setting file
 COPY ./srcs/default.conf /etc/nginx/conf.d/default.conf
@@ -24,9 +27,9 @@ COPY ./srcs/setup.sh /tmp/
 
 RUN chmod 755 /tmp/setup.sh
 
-CMD ["/tmp/setup.sh"]
-
 EXPOSE 5050
+
+CMD ["/tmp/setup.sh"]
 
 
 ##memo
