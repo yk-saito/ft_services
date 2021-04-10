@@ -36,7 +36,7 @@ metadata:
    app: ftps
 spec:
   type: LoadBalancer
-  loadBalancerIP: 192.168.11.11
+  loadBalancerIP: 192.168.50.3
   ports:
   - port: 21
   selector:

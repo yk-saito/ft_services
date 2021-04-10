@@ -12,15 +12,9 @@ sudo netstat -nlpt | grep 3306
 sudo service mysql stop
 
 minikube delete
-<<<<<<< HEAD
 #rm ~/.kube ~/.minikube
-#minikube start --vm-driver none
-minikube start
-=======
-rm ~/.kube ~/.minikube
-minikube start --vm-driver none
-
->>>>>>> 3cf370bf2c83369bd5904e1ddef59ac96fea7b48
+sudo minikube start --vm-driver=none --extra-config=apiserver.service-node-port-range=1-65535
+#minikube start
 #
 eval $(minikube docker-env)
 
