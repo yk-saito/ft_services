@@ -1,35 +1,39 @@
-# Persistent volume
-
-# Deployment
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: mysql-deploy
+  name: mysql-deploy
 spec:
- replicas:	1
- selector:
-  matchLabels:
-   app: mysql
- template:
-  metadata:
-   name: mysql-pod
-   labels:
-    app: mysql
+  replicas:	1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      name: mysql-pod
+      labels:
+        app: mysql
   spec:
-   containers:
-   - name: mysql
-     image: mysql:ysaito
-     imagePullPolicy: Never
-     ports:
-     - containerPort: 3306
+    volumes:
+    - name: mysql-pvc
+      persistentVolumeClaim:
+        claimName: ft-services-pvc
+    containers:
+    - name: mysql
+      image: mysql:ysaito
+      imagePullPolicy: Never
+      ports:
+      - containerPort: 3306
+      volumeMounts:
+      - name: mysql-pvc
+        mountPath: /var/lib/mysql
 ---
-# service: Mediate access to pods.
+
 apiVersion: v1
 kind: Service
 metadata:
   name: mysql-svc
   labels:
-   app: mysql
+    app: mysql
 spec:
   type: ClusterIP
   ports:

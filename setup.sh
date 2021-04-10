@@ -1,21 +1,30 @@
 #!/bin/bash
 
-# Environment variable
+## Environment variable
 METALLB_VER='v0.9.6'
 
-# Color
+## Color
 GREEN=$'\e[0;32m'
 COLOR_RESET=$'\e[0m'
 
-# mysql using port 
+## mysql using port 
 sudo netstat -nlpt | grep 3306
 sudo service mysql stop
 
+## error Failed to save config: open /home/user42/.minikube/profiles/minikube/config.json: permission denied
+#sudo chmod -R 777 ~/.minikube
+#sudo chmod -R 777 ~/.kube
+
 minikube delete
-#rm ~/.kube ~/.minikube
-sudo minikube start --vm-driver=none --extra-config=apiserver.service-node-port-range=1-65535
-#minikube start
-#
+minikube start --driver=docker
+
+#systemctl stop nginx
+#minikube delete
+#sudo minikube start --vm-driver=none --extra-config=apiserver.service-node-port-range=1-65535
+#minikube addons enable metrics-server
+#minikube addons enable dashboard
+#minikube addons enable metallb
+
 eval $(minikube docker-env)
 
 #
@@ -29,16 +38,13 @@ docker build -t influxdb:ysaito srcs/influxdb
 docker build -t grafana:ysaito srcs/grafana
 echo "${GREEN}Successfully created docker images.${COLOR_RESET}"
 
-# Install metalLB
-#kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.6/manifests/namespace.yaml
-#kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.6/manifests/metallb.yaml
-#kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
-
+## Install metalLB
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/${METALLB_VER}/manifests/namespace.yaml
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/${METALLB_VER}/manifests/metallb.yaml
 kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 
 kubectl apply -f ./srcs/yamls/metallb-system.yaml
+kubectl apply -f ./srcs/yamls/pvc.yaml
 kubectl apply -f ./srcs/yamls/nginx.yaml
 kubectl apply -f ./srcs/yamls/mysql.yaml
 kubectl apply -f ./srcs/yamls/phpmyadmin.yaml
@@ -49,5 +55,5 @@ kubectl apply -f ./srcs/yamls/grafana.yaml
 
 echo "${GREEN}Successfully execute kubectl.${COLOR_RESET}"
 
-# Open Kubernetes Dashboard
+## Open Kubernetes Dashboard
 minikube dashboard

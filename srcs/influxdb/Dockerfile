@@ -6,7 +6,7 @@
 #    By: ysaito <ysaito@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 17:31:54 by ysaito            #+#    #+#              #
-#    Updated: 2021/04/06 17:32:02 by ysaito           ###   ########.fr        #
+#    Updated: 2021/04/10 16:31:07 by ysaito           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ RUN apk update; \
 
 COPY ./srcs/setup.sh /tmp/
 
-RUN chmod 755 /tmp/set.sh
+RUN chmod 755 /tmp/setup.sh
 
 CMD ["/tmp/setup.sh"]
 
