@@ -12,20 +12,20 @@ spec:
       name: influxdb-pod
       labels:
         app: influxdb
-  spec:
-    volumes:
-    - name: influxdb-pvc
-      persistentVolumeClaim:
-        claimName: ft-services-pvc
-    containers:
-    - name: influxdb
-      image: influxdb:ysaito
-      imagePullPolicy: Never
-    ports:
-    - containerPort: 8086
-    volumeMounts:
-    - name: influxdb-pvc
-      mountPath: /var/lib/influxdb
+    spec:
+      volumes:
+      - name: influxdb-pvc
+        persistentVolumeClaim:
+          claimName: ft-services-pvc
+      containers:
+      - name: influxdb
+        image: influxdb:ysaito
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8086
+        volumeMounts:
+        - name: influxdb-pvc
+          mountPath: /var/lib/influxdb
 ---
 
 apiVersion: v1

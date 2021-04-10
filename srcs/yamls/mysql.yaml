@@ -12,20 +12,20 @@ spec:
       name: mysql-pod
       labels:
         app: mysql
-  spec:
-    volumes:
-    - name: mysql-pvc
-      persistentVolumeClaim:
-        claimName: ft-services-pvc
-    containers:
-    - name: mysql
-      image: mysql:ysaito
-      imagePullPolicy: Never
-      ports:
-      - containerPort: 3306
-      volumeMounts:
+    spec:
+      volumes:
       - name: mysql-pvc
-        mountPath: /var/lib/mysql
+        persistentVolumeClaim:
+          claimName: ft-services-pvc
+      containers:
+      - name: mysql
+        image: mysql:ysaito
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 3306
+        volumeMounts:
+        - name: mysql-pvc
+          mountPath: /var/lib/mysql
 ---
 
 apiVersion: v1
