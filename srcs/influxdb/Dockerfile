@@ -6,19 +6,24 @@
 #    By: ysaito <ysaito@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 17:31:54 by ysaito            #+#    #+#              #
-#    Updated: 2021/04/10 16:31:07 by ysaito           ###   ########.fr        #
+#    Updated: 2021/04/10 22:18:57 by ysaito           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FROM alpine:3.12
+FROM alpine:latest
 
-RUN apk update; \
-	apk add --no-cache influxdb
+RUN set -eux; \
+		apk update; \
+		apk add --no-cache \
+			influxdb \
+			telegraf; \
+		mkdir -p /etc/telegraf
 
+COPY ./srcs/telegraf.conf /etc/telegraf/
 COPY ./srcs/setup.sh /tmp/
 
 RUN chmod 755 /tmp/setup.sh
 
-CMD ["/tmp/setup.sh"]
-
 EXPOSE 8086
+
+CMD ["/tmp/setup.sh"]

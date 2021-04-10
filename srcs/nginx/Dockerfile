@@ -1,5 +1,4 @@
-# **************************************************************************** #
-#                                                                              #
+# *********************************************************************#                                                                              #
 #                                                         :::      ::::::::    #
 #    Dockerfile                                         :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
@@ -10,13 +9,15 @@
 #                                                                              #
 # **************************************************************************** #
 
-FROM alpine:3.12
+FROM alpine:latest
 
 RUN set -eux; \
 		apk update; \
 		apk add --no-cache \
 			nginx \
-			openssh openssl
+			openssh openssl \
+			telegraf; \
+		mkdir -p /etc/telegraf
 
 RUN set -eux; \
 		/usr/bin/ssh-keygen -A; \
@@ -26,10 +27,11 @@ RUN set -eux; \
 COPY ./srcs/default.conf /etc/nginx/conf.d/default.conf
 COPY ./srcs/index.html /var/www/localhost/htdocs/
 COPY ./srcs/sshd_config /etc/ssh/
+COPY ./srcs/telegraf.conf /etc/telegraf/
 COPY ./srcs/setup.sh /tmp/
 
 RUN chmod 755 /tmp/setup.sh
 
-CMD ["/tmp/setup.sh"]
-
 EXPOSE 80 443 22
+
+CMD ["/tmp/setup.sh"]

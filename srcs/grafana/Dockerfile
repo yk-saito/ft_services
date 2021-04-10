@@ -6,17 +6,21 @@
 #    By: ysaito <ysaito@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 17:31:42 by ysaito            #+#    #+#              #
-#    Updated: 2021/04/09 20:09:58 by ysaito           ###   ########.fr        #
+#    Updated: 2021/04/10 22:05:21 by ysaito           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FROM alpine:3.12
+FROM alpine:latest
 
 ENV GRAFANA_VER=7.4.3
 
 RUN set -eux; \
         apk update; \
-        apk add --no-cache wget
+        apk add --no-cache \
+        	wget \
+        	telegraf; \
+        mkdir -p /etc/telegraf/
+
 #  Install & Setup grafana
 RUN set -eux; \
         wget https://dl.grafana.com/enterprise/release/grafana-enterprise-${GRAFANA_VER}.linux-amd64.tar.gz; \
@@ -34,6 +38,7 @@ COPY ./srcs/dashboards/dashboard.yaml /var/lib/grafana/conf/provisioning/dashboa
 COPY ./srcs/dashboards/nginx.json /var/lib/grafana/conf/provisioning/dashboards/nginx.json
 #COPY ./srcs/dashboards/phpmyadmin.json /var/lib/grafana/conf/provisioning/dashboards/phpmyadmin.json
 #COPY ./srcs/dashboards/wordpress.json /var/lib/grafana/conf/provisioning/dashboards
+COPY ./srcs/telegraf.conf /etc/telegraf/
 
 EXPOSE 3000
 

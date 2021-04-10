@@ -1,12 +1,12 @@
 #!bin/sh
 WP_PATH=/var/www/localhost/htdocs/wordpress/
 
-## Install wordpress
+# Install wordpress
 wget http://wordpress.org/latest.tar.gz
 tar -xzvf latest.tar.gz -C /var/www/localhost/htdocs
 rm -r latest.tar.gz
 
-## Install WP-CLI
+# Install WP-CLI
 wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 chmod +x wp-cli.phar
 mv wp-cli.phar /usr/local/bin/wp
@@ -24,9 +24,12 @@ mkdir /run/php/
 #SSL
 openssl req -new -newkey rsa:2048 -nodes -days 365 -x509 -subj "/C=JP/ST=TOkyo/L=Minato-City/O=42Tokyo/OU=./CN=localhost" -keyout /etc/ssl/private/services.key -out /etc/ssl/certs/services.crt
 
-## Start php(make socket)
+# Start telegraf
+telegraf &
+
+# Start php(make socket)
 usr/sbin/php-fpm7;
 
-## Start nginx
+# Start nginx
 nginx -g 'daemon off;'
 # killall -KILL php-fpm7;

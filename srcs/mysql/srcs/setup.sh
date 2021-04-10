@@ -4,5 +4,8 @@
 mkdir -p /run/mysqld
 mysql_install_db
 
+# Start telegraf deamon
+telegraf &
+
 # Start mysql daemon
 /usr/bin/mysqld
