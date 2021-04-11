@@ -1,26 +1,37 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: ftps-deploy
+  name: ftps-deploy
 spec:
- replicas:	1
- selector:
-  matchLabels:
-   app: ftps
- template:
-  metadata:
-   labels:
-    app: ftps
-  spec:
-   containers:
-   - name: ftps
-     image: ftps:ysaito
-     imagePullPolicy: Never
-     ports:
-     - containerPort: 21
+  replicas:	1
+  selector:
+    matchLabels:
+      app: ftps
+  template:
+    metadata:
+      labels:
+        app: ftps
+    spec:
+      containers:
+      - name: ftps
+      image: ftps:ysaito
+      imagePullPolicy: Never
+      ports:
+      - containerPort: 20
+      - containerPort: 21
+      - containerPort: 21000
+      - containerPort: 21001
+      - containerPort: 21002
+      - containerPort: 21003
+      - containerPort: 21004
+      - containerPort: 21005
+      - containerPort: 21006
+      - containerPort: 21007
+      - containerPort: 21008
+      - containerPort: 21009
 
 ---
-# service: Mediate access to pods.
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -28,11 +39,36 @@ metadata:
   annotations:
     metallb.universe.tf/allow-shared-ip: ft_services
   labels:
-   app: ftps
+    app: ftps
 spec:
   type: LoadBalancer
   loadBalancerIP: 192.168.50.3
   ports:
+  - port: 20
+    targetPort: 20
   - port: 21
+    targetPort: 21
+  - port: 21000
+    targetPort: 21000
+  - port: 21001
+    targetPort: 21001
+  - port: 21002
+    targetPort: 21002
+  - port: 21003
+    targetPort: 21003
+  - port: 21004
+    targetPort: 21004
+  - port: 21005
+    targetPort: 21005
+  - port: 21006
+    targetPort: 21006
+  - port: 21007
+    targetPort: 21007
+  - port: 21008
+    targetPort: 21008
+  - port: 21009
+    targetPort: 21009
+  - port: 21010
+    targetPort: 210010
   selector:
     app: ftps
