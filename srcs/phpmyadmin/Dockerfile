@@ -6,7 +6,7 @@
 #    By: ysaito <ysaito@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 17:32:09 by ysaito            #+#    #+#              #
-#    Updated: 2021/04/10 22:14:36 by ysaito           ###   ########.fr        #
+#    Updated: 2021/04/11 20:15:33 by ysaito           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,11 +21,20 @@ RUN set -eux;\
 			telegraf; \
 		mkdir -p /etc/telegraf
 
+# Install phpmyadmin
+RUN set -eux; \
+		mkdir -p /var/www/localhost/htdocs/phpmyadmin; \
+		wget https://files.phpmyadmin.net/phpMyAdmin/5.0.4/phpMyAdmin-5.0.4-all-languages.tar.gz; \
+		tar -xzvf phpMyAdmin-5.0.4-all-languages.tar.gz\
+			--strip-components=1 -C /var/www/localhost/htdocs/phpmyadmin/; \
+		rm -r phpMyAdmin-5.0.4-all-languages.tar.gz
+
 #nginx setting file
 COPY ./srcs/default.conf /etc/nginx/conf.d/default.conf
 
 #phpmyadmin setting file
 COPY ./srcs/www.conf /etc/php7/php-fpm.d/www.conf
+COPY ./srcs/config.inc.php /var/www/localhost/htdocs/phpmyadmin/
 COPY ./srcs/setup.sh /tmp/
 
 #telegraf settinig file
