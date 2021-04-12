@@ -35,9 +35,9 @@ RUN set -eux; \
 		mv wp-cli.phar /usr/local/bin/wp
 
 # nginx setting file
-COPY ./srcs/default.conf /etc/nginx/conf.d/default.conf
+COPY ./srcs/nginx.conf /etc/nginx/
 # worpdress setting file
-#COPY ./srcs/wp-config.php /var/www//wordpress/
+COPY ./srcs/wp-config.php /var/www//wordpress/
 COPY ./srcs/www.conf /etc/php7/php-fpm.d/www.conf
 COPY ./srcs/setup.sh /tmp/
 # telegraf setting file

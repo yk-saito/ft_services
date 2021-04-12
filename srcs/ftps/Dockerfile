@@ -25,8 +25,8 @@ RUN set -eux; \
     	echo "admin42:admin42" | chpasswd
 
 COPY ./srcs/vsftpd.conf /etc/vsftpd/vsftpd.conf
-COPY ./srcs/telegraf.conf /etc/telegraf/
-COPY ./srcs/setup.sh /tmp/
+COPY ./srcs/telegraf.conf /etc/telegraf/telegraf.conf
+COPY ./srcs/setup.sh /tmp/setup.sh
 
 RUN chmod 755 /tmp/setup.sh
 
