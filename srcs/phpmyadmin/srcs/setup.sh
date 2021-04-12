@@ -1,4 +1,6 @@
 #!bin/sh
+chown -R nginx:nginx /var/www/
+
 mkdir /run/nginx/
 mkdir /run/php/
 
