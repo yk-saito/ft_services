@@ -25,7 +25,7 @@ RUN set -eux; \
     	echo "admin42:admin42" | chpasswd
 
 COPY ./srcs/default.conf /etc/nginx/conf.d/default.conf
-COPY ./srcs/index.html /var/www/localhost/htdocs/
+COPY ./srcs/index.html /var/www/
 COPY ./srcs/sshd_config /etc/ssh/
 COPY ./srcs/telegraf.conf /etc/telegraf/
 COPY ./srcs/setup.sh /tmp/

@@ -23,10 +23,10 @@ RUN set -eux;\
 
 # Install phpmyadmin
 RUN set -eux; \
-		mkdir -p /var/www/localhost/htdocs/phpmyadmin; \
+		mkdir -p /var/www//phpmyadmin; \
 		wget https://files.phpmyadmin.net/phpMyAdmin/5.0.4/phpMyAdmin-5.0.4-all-languages.tar.gz; \
 		tar -xzvf phpMyAdmin-5.0.4-all-languages.tar.gz\
-			--strip-components=1 -C /var/www/localhost/htdocs/phpmyadmin/; \
+			--strip-components=1 -C /var/www//phpmyadmin/; \
 		rm -r phpMyAdmin-5.0.4-all-languages.tar.gz
 
 #nginx setting file
@@ -34,7 +34,7 @@ COPY ./srcs/default.conf /etc/nginx/conf.d/default.conf
 
 #phpmyadmin setting file
 COPY ./srcs/www.conf /etc/php7/php-fpm.d/www.conf
-COPY ./srcs/config.inc.php /var/www/localhost/htdocs/phpmyadmin/
+COPY ./srcs/config.inc.php /var/www//phpmyadmin/
 COPY ./srcs/setup.sh /tmp/
 
 #telegraf settinig file

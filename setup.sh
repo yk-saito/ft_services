@@ -18,13 +18,6 @@ sudo service mysql stop
 minikube delete
 minikube start --driver=docker
 
-#systemctl stop nginx
-#minikube delete
-#sudo minikube start --vm-driver=none --extra-config=apiserver.service-node-port-range=1-65535
-#minikube addons enable metrics-server
-#minikube addons enable dashboard
-#minikube addons enable metallb
-
 eval $(minikube docker-env)
 
 #
@@ -33,9 +26,9 @@ docker build -t nginx:ysaito ./srcs/nginx
 docker build -t mysql:ysaito ./srcs/mysql
 docker build -t phpmyadmin:ysaito ./srcs/phpmyadmin
 docker build -t wordpress:ysaito ./srcs/wordpress
-docker build -t ftps:ysaito ./srcs/ftps
-docker build -t influxdb:ysaito srcs/influxdb
-docker build -t grafana:ysaito srcs/grafana
+#docker build -t ftps:ysaito ./srcs/ftps
+#docker build -t influxdb:ysaito srcs/influxdb
+#docker build -t grafana:ysaito srcs/grafana
 echo "${GREEN}Successfully created docker images.${COLOR_RESET}"
 
 ## Install metalLB
@@ -43,15 +36,15 @@ kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/${METALLB_VER
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/${METALLB_VER}/manifests/metallb.yaml
 kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 
-kubectl apply -f ./srcs/yamls/metallb-system.yaml
+kubectl apply -f ./srcs/yamls/metallb-config.yaml
 kubectl apply -f ./srcs/yamls/pvc.yaml
 kubectl apply -f ./srcs/yamls/nginx.yaml
 kubectl apply -f ./srcs/yamls/mysql.yaml
 kubectl apply -f ./srcs/yamls/phpmyadmin.yaml
 kubectl apply -f ./srcs/yamls/wordpress.yaml
-kubectl apply -f ./srcs/yamls/ftps.yaml
-kubectl apply -f ./srcs/yamls/influxdb.yaml
-kubectl apply -f ./srcs/yamls/grafana.yaml
+#kubectl apply -f ./srcs/yamls/ftps.yaml
+#kubectl apply -f ./srcs/yamls/influxdb.yaml
+#kubectl apply -f ./srcs/yamls/grafana.yaml
 
 echo "${GREEN}Successfully execute kubectl.${COLOR_RESET}"
 

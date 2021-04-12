@@ -18,16 +18,29 @@ RUN	set -eux; \
 			nginx \
 			openssl \
 			php-fpm php7-json php7-mysqli php7-curl php7-phar php7-iconv \
+			mysql-client \
 			telegraf; \
 		mkdir -p /etc/telegraf
 
-#nginx setting file
+# Install wordpress
+#RUN set -eux; \
+#		wget http://wordpress.org/latest.tar.gz; \
+#		tar -xzvf latest.tar.gz -C /var/www/; \
+#		rm -r latest.tar.gz
+
+# Install WP-CLI
+RUN set -eux; \
+		wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar; \
+		chmod +x wp-cli.phar; \
+		mv wp-cli.phar /usr/local/bin/wp
+
+# nginx setting file
 COPY ./srcs/default.conf /etc/nginx/conf.d/default.conf
-#worpdress setting file
-COPY ./srcs/wp-config.php /var/www/localhost/htdocs/wordpress/
+# worpdress setting file
+#COPY ./srcs/wp-config.php /var/www//wordpress/
 COPY ./srcs/www.conf /etc/php7/php-fpm.d/www.conf
 COPY ./srcs/setup.sh /tmp/
-#telegraf setting file
+# telegraf setting file
 COPY ./srcs/telegraf.conf /etc/telegraf/
 
 RUN chmod 755 /tmp/setup.sh
