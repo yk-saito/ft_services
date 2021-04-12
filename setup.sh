@@ -26,9 +26,9 @@ docker build -t nginx:ysaito ./srcs/nginx
 docker build -t mysql:ysaito ./srcs/mysql
 docker build -t phpmyadmin:ysaito ./srcs/phpmyadmin
 docker build -t wordpress:ysaito ./srcs/wordpress
-#docker build -t ftps:ysaito ./srcs/ftps
-#docker build -t influxdb:ysaito srcs/influxdb
-#docker build -t grafana:ysaito srcs/grafana
+docker build -t ftps:ysaito ./srcs/ftps
+docker build -t influxdb:ysaito srcs/influxdb
+docker build -t grafana:ysaito srcs/grafana
 echo "${GREEN}Successfully created docker images.${COLOR_RESET}"
 
 ## Install metalLB
@@ -42,9 +42,9 @@ kubectl apply -f ./srcs/yamls/nginx.yaml
 kubectl apply -f ./srcs/yamls/mysql.yaml
 kubectl apply -f ./srcs/yamls/phpmyadmin.yaml
 kubectl apply -f ./srcs/yamls/wordpress.yaml
-#kubectl apply -f ./srcs/yamls/ftps.yaml
-#kubectl apply -f ./srcs/yamls/influxdb.yaml
-#kubectl apply -f ./srcs/yamls/grafana.yaml
+kubectl apply -f ./srcs/yamls/ftps.yaml
+kubectl apply -f ./srcs/yamls/influxdb.yaml
+kubectl apply -f ./srcs/yamls/grafana.yaml
 
 echo "${GREEN}Successfully execute kubectl.${COLOR_RESET}"
 

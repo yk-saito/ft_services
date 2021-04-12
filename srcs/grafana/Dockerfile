@@ -18,6 +18,7 @@ RUN set -eux; \
         apk update; \
         apk add --no-cache \
         	wget \
+                openssl \
         	telegraf; \
         mkdir -p /etc/telegraf/
 
@@ -39,8 +40,11 @@ COPY ./srcs/dashboards/nginx.json /var/lib/grafana/conf/provisioning/dashboards/
 #COPY ./srcs/dashboards/phpmyadmin.json /var/lib/grafana/conf/provisioning/dashboards/phpmyadmin.json
 #COPY ./srcs/dashboards/wordpress.json /var/lib/grafana/conf/provisioning/dashboards
 COPY ./srcs/telegraf.conf /etc/telegraf/
+COPY ./srcs/setup.sh /tmp/
+RUN chmod 755 /tmp/setup.sh
 
 EXPOSE 3000
 
 #CMD [ "/var/lib/grafana/bin/grafana-server", "--config=/var/lib/grafana/conf/defaults.ini",  "--homepath=/var/lib/grafana" ]
-CMD [ "/var/lib/grafana/bin/grafana-server", "--homepath=/var/lib/grafana" ]
+#CMD [ "/var/lib/grafana/bin/grafana-server", "--homepath=/var/lib/grafana" ]
+CMD ["/tmp/setup.sh"]
