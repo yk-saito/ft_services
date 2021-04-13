@@ -6,7 +6,7 @@
 #    By: ysaito <ysaito@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 17:31:42 by ysaito            #+#    #+#              #
-#    Updated: 2021/04/10 22:05:21 by ysaito           ###   ########.fr        #
+#    Updated: 2021/04/13 16:43:30 by ysaito           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,8 +39,8 @@ COPY ./srcs/dashboards/dashboard.yaml /var/lib/grafana/conf/provisioning/dashboa
 COPY ./srcs/dashboards/nginx.json /var/lib/grafana/conf/provisioning/dashboards/nginx.json
 #COPY ./srcs/dashboards/phpmyadmin.json /var/lib/grafana/conf/provisioning/dashboards/phpmyadmin.json
 #COPY ./srcs/dashboards/wordpress.json /var/lib/grafana/conf/provisioning/dashboards
-COPY ./srcs/telegraf.conf /etc/telegraf/telegraf.conf
-COPY ./srcs/setup.sh /tmp/setup.sh
+
+COPY ./srcs/setup.sh /tmp/
 RUN chmod 755 /tmp/setup.sh
 
 EXPOSE 3000

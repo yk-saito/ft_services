@@ -6,8 +6,13 @@ sed -i -e "s|protocol = http|protocol = https|g" /var/lib/grafana/conf/defaults.
 sed -i -e "s|cert_file =|cert_file = /etc/ssl/certs/services.crt|g" /var/lib/grafana/conf/defaults.ini
 sed -i -e "s|cert_key =|cert_key = /etc/ssl/private/services.key|g" /var/lib/grafana/conf/defaults.ini
 
+# Setup telegraf.conf
+telegraf config --input-filter cpu:mem --output-filter influxdb > /etc/telegraf.conf
+sed -i -e 's|hostname = ""|hostname = "grafana"|g' /etc/telegraf.conf
+sed -i -e 's|# urls = ["http://127.0.0.1:8086"]|urls = ["http://192.168.49.2:8086"]|g' /etc/telegraf.conf
+
 # Start telegraf
-telegraf &
+telegraf --config /etc/telegraf.conf &
 
 # Start SSH
 /usr/sbin/sshd

@@ -6,7 +6,7 @@
 #    By: ysaito <ysaito@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 17:32:19 by ysaito            #+#    #+#              #
-#    Updated: 2021/04/10 22:17:20 by ysaito           ###   ########.fr        #
+#    Updated: 2021/04/13 16:38:20 by ysaito           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,11 +37,8 @@ RUN set -eux; \
 # nginx setting file
 COPY ./srcs/nginx.conf /etc/nginx/
 # worpdress setting file
-COPY ./srcs/wp-config.php /var/www//wordpress/
-COPY ./srcs/www.conf /etc/php7/php-fpm.d/www.conf
+COPY ./srcs/www.conf /etc/php7/php-fpm.d/
 COPY ./srcs/setup.sh /tmp/
-# telegraf setting file
-#COPY ./srcs/telegraf.conf /etc/telegraf/
 
 RUN chmod 755 /tmp/setup.sh
 

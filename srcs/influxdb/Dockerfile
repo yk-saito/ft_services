@@ -6,7 +6,7 @@
 #    By: ysaito <ysaito@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 17:31:54 by ysaito            #+#    #+#              #
-#    Updated: 2021/04/10 22:18:57 by ysaito           ###   ########.fr        #
+#    Updated: 2021/04/13 16:42:36 by ysaito           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,6 @@ RUN set -eux; \
 			telegraf; \
 		mkdir -p /etc/telegraf
 
-COPY ./srcs/telegraf.conf /etc/telegraf/
 COPY ./srcs/setup.sh /tmp/
 
 RUN chmod 755 /tmp/setup.sh

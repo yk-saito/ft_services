@@ -24,11 +24,10 @@ RUN set -eux; \
     	adduser -D admin42; \
     	echo "admin42:admin42" | chpasswd
 
-COPY ./srcs/nginx.conf /etc/nginx/nginx.conf
-COPY ./srcs/index.html /var/www/index.html
-COPY ./srcs/sshd_config /etc/ssh/sshd_config
-COPY ./srcs/telegraf.conf /etc/telegraf/telegraf.conf
-COPY ./srcs/setup.sh /tmp/setup.sh
+COPY ./srcs/nginx.conf /etc/nginx/
+COPY ./srcs/index.html /var/www/
+COPY ./srcs/sshd_config /etc/ssh/
+COPY ./srcs/setup.sh /tmp/
 
 RUN chmod 755 /tmp/setup.sh
 

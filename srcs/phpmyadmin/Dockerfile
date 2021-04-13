@@ -6,7 +6,7 @@
 #    By: ysaito <ysaito@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/06 17:32:09 by ysaito            #+#    #+#              #
-#    Updated: 2021/04/11 20:15:33 by ysaito           ###   ########.fr        #
+#    Updated: 2021/04/13 16:39:03 by ysaito           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,12 +33,9 @@ RUN set -eux; \
 COPY ./srcs/nginx.conf /etc/nginx/
 
 #phpmyadmin setting file
-COPY ./srcs/www.conf /etc/php7/php-fpm.d/www.conf
+COPY ./srcs/www.conf /etc/php7/php-fpm.d/
 COPY ./srcs/config.inc.php /var/www//phpmyadmin/
 COPY ./srcs/setup.sh /tmp/
-
-#telegraf settinig file
-COPY ./srcs/telegraf.conf /etc/telegraf/
 
 RUN chmod 755 /tmp/setup.sh
 
