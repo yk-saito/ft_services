@@ -30,7 +30,6 @@ spec:
         - containerPort: 21008
         - containerPort: 21009
         - containerPort: 21010
-
 ---
 
 apiVersion: v1
