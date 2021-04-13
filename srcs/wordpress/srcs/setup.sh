@@ -2,12 +2,7 @@
 WP_PATH=/var/www/wordpress/
 
 wp core download --path=$WP_PATH --locale=ja
-<<<<<<< HEAD
 wp config create --path=$WP_PATH --dbname=wordpress_db --dbuser=admin42 --dbpass=admin42 --dbhost=mysql-svc #--dbcharset=utf8mb4
-=======
-wp config create --path=$WP_PATH --dbname=wordpress_db --dbuser=admin42 --dbpass=admin42 --dbhost=mysql-svc -dbcharset=utf8mb4
-wp db create
->>>>>>> 557f61d16591140bf12064af004832d828e5f2f3
 wp core install --path=$WP_PATH --url=https://192.168.49.2:5050/wordpress --title=ft_services --admin_user=admin42 --admin_password=admin42 --admin_email=admin@wordpress.com --skip-email
 wp user create --path=$WP_PATH user1 editor@wordpress.com --role=editor --user_pass=edirot
 wp user create --path=$WP_PATH user2 author@wordpress.com --role=author --user_pass=author
