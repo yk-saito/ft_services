@@ -17,7 +17,7 @@ RUN	set -eux; \
 		apk add --no-cache \
 			nginx \
 			openssl \
-			php-fpm php7-json php7-mysqli php7-curl php7-phar php7-iconv \
+			php7-curl php7-dom  php7-exif php7-fileinfo php-fpm php7-iconv php7-json php7-mysqli php7-phar php7-xml php7-zip\
 			mysql-client \
 			telegraf; \
 		mkdir -p /etc/telegraf
@@ -35,9 +35,9 @@ RUN set -eux; \
 		mv wp-cli.phar /usr/local/bin/wp
 
 # nginx setting file
-COPY ./srcs/default.conf /etc/nginx/conf.d/default.conf
+COPY ./srcs/nginx.conf /etc/nginx/
 # worpdress setting file
-#COPY ./srcs/wp-config.php /var/www//wordpress/
+COPY ./srcs/wp-config.php /var/www//wordpress/
 COPY ./srcs/www.conf /etc/php7/php-fpm.d/www.conf
 COPY ./srcs/setup.sh /tmp/
 # telegraf setting file

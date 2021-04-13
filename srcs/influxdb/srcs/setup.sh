@@ -9,7 +9,7 @@ telegraf &
 
 # Make database
 #influx -e "CREATE DATABASE grafana"
-#influx -e "CREATE USER admin42 WITH PASSWORD 'admin42'"
+#influx -e "CREATE USER admin42 WITH PASSWORD 'admin42' WITH ALL PRIVILEGES"
 #influx -e "GRANT ALL ON grafana TO admin42"
 
 #tail -f /dev/null 

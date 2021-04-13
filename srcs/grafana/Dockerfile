@@ -39,8 +39,8 @@ COPY ./srcs/dashboards/dashboard.yaml /var/lib/grafana/conf/provisioning/dashboa
 COPY ./srcs/dashboards/nginx.json /var/lib/grafana/conf/provisioning/dashboards/nginx.json
 #COPY ./srcs/dashboards/phpmyadmin.json /var/lib/grafana/conf/provisioning/dashboards/phpmyadmin.json
 #COPY ./srcs/dashboards/wordpress.json /var/lib/grafana/conf/provisioning/dashboards
-COPY ./srcs/telegraf.conf /etc/telegraf/
-COPY ./srcs/setup.sh /tmp/
+COPY ./srcs/telegraf.conf /etc/telegraf/telegraf.conf
+COPY ./srcs/setup.sh /tmp/setup.sh
 RUN chmod 755 /tmp/setup.sh
 
 EXPOSE 3000

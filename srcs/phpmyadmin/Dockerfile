@@ -30,7 +30,7 @@ RUN set -eux; \
 		rm -r phpMyAdmin-5.0.4-all-languages.tar.gz
 
 #nginx setting file
-COPY ./srcs/default.conf /etc/nginx/conf.d/default.conf
+COPY ./srcs/nginx.conf /etc/nginx/
 
 #phpmyadmin setting file
 COPY ./srcs/www.conf /etc/php7/php-fpm.d/www.conf
