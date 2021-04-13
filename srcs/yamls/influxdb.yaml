@@ -26,6 +26,9 @@ spec:
         volumeMounts:
         - name: influxdb-pvc
           mountPath: /var/lib/influxdb
+        envFrom:
+        - secretRef:
+          name: influxdb-creds
 ---
 
 apiVersion: v1

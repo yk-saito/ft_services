@@ -1,17 +1,17 @@
 #!/bin/bash
 
-## Environment variable
+# Environment variable
 METALLB_VER='v0.9.6'
 
-## Color
+# Color
 GREEN=$'\e[0;32m'
 COLOR_RESET=$'\e[0m'
 
-## mysql using port 
+# mysql using port 
 sudo netstat -nlpt | grep 3306
 sudo service mysql stop
 
-## error Failed to save config: open /home/user42/.minikube/profiles/minikube/config.json: permission denied
+# error Failed to save config: open /home/user42/.minikube/profiles/minikube/config.json: permission denied
 #sudo chmod -R 777 ~/.minikube
 #sudo chmod -R 777 ~/.kube
 
@@ -31,7 +31,15 @@ docker build -t influxdb:ysaito srcs/influxdb
 docker build -t grafana:ysaito srcs/grafana
 echo "${GREEN}Successfully created docker images.${COLOR_RESET}"
 
-## Install metalLB
+# Create secret
+kubectl create secret generic influxdb-creds \
+  --from-literal=INFLUXDB_DATABASE=telegraf \
+  --from-literal=INFLUXDB_USERNAME=admin42 \
+  --from-literal=INFLUXDB_PASSWORD=admin42 \
+  --from-literal=INFLUXDB_HOST=influxdb-svc
+
+
+# Install metalLB
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/${METALLB_VER}/manifests/namespace.yaml
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/${METALLB_VER}/manifests/metallb.yaml
 kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
@@ -48,5 +56,5 @@ kubectl apply -f ./srcs/yamls/grafana.yaml
 
 echo "${GREEN}Successfully execute kubectl.${COLOR_RESET}"
 
-## Open Kubernetes Dashboard
+# Open Kubernetes Dashboard
 minikube dashboard

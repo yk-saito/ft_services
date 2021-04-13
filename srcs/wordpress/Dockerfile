@@ -41,7 +41,7 @@ COPY ./srcs/wp-config.php /var/www//wordpress/
 COPY ./srcs/www.conf /etc/php7/php-fpm.d/www.conf
 COPY ./srcs/setup.sh /tmp/
 # telegraf setting file
-COPY ./srcs/telegraf.conf /etc/telegraf/
+#COPY ./srcs/telegraf.conf /etc/telegraf/
 
 RUN chmod 755 /tmp/setup.sh
 
