@@ -28,7 +28,7 @@ spec:
           mountPath: /var/lib/influxdb
         envFrom:
         - secretRef:
-          name: influxdb-creds
+            name: influxdb-creds
 ---
 
 apiVersion: v1
