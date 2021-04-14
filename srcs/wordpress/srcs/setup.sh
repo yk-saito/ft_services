@@ -1,7 +1,7 @@
 #!bin/sh
 WP_PATH=/var/www/wordpress/
 
-#wp core download --path=$WP_PATH --locale=ja
+wp core download --path=$WP_PATH --locale=ja
 wp config create --path=$WP_PATH --dbname=wordpress_db --dbuser=admin42 --dbpass=admin42 --dbhost=mysql-svc
 wp db create --path=$WP_PATH
 wp core install --path=$WP_PATH --url=https://192.168.49.2:5050/wordpress --title=ft_services --admin_user=admin42 --admin_password=admin42 --admin_email=admin@wordpress.com --skip-email

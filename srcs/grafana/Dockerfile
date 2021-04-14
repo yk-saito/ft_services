@@ -15,20 +15,20 @@ FROM alpine:latest
 ENV GRAFANA_VER=7.4.3
 
 RUN set -eux; \
-        apk update; \
-        apk add --no-cache \
-        	wget \
-                openssl \
-        	telegraf; \
-        mkdir -p /etc/telegraf/
+		apk update; \
+		apk add --no-cache \
+			wget \
+			openssl \
+			telegraf; \
+		mkdir -p /etc/telegraf/
 
 #  Install & Setup grafana
 RUN set -eux; \
-        wget https://dl.grafana.com/enterprise/release/grafana-enterprise-${GRAFANA_VER}.linux-amd64.tar.gz; \
-        mkdir -p /var/lib/grafana; \
-        tar -zxvf grafana-enterprise-${GRAFANA_VER}.linux-amd64.tar.gz --strip-components=1 -C /var/lib/grafana/; \
-        rm -r grafana-enterprise-${GRAFANA_VER}.linux-amd64.tar.gz; \
-        mkdir /lib64 && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2
+		wget https://dl.grafana.com/enterprise/release/grafana-enterprise-${GRAFANA_VER}.linux-amd64.tar.gz; \
+		mkdir -p /var/lib/grafana; \
+		tar -zxvf grafana-enterprise-${GRAFANA_VER}.linux-amd64.tar.gz --strip-components=1 -C /var/lib/grafana/; \
+		rm -r grafana-enterprise-${GRAFANA_VER}.linux-amd64.tar.gz; \
+		mkdir /lib64 && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2
 
 COPY ./srcs/datasources/datasource.yaml /var/lib/grafana/conf/provisioning/datasources/
 COPY ./srcs/dashboards/dashboard.yaml /var/lib/grafana/conf/provisioning/dashboards

@@ -17,7 +17,13 @@ RUN set -eux;\
 		apk add --no-cache \
 			nginx \
 			openssl \
-			php-fpm php7-json php7-mysqli php7-curl php7-iconv php7-mbstring php7-session \
+			php7-curl \
+			php-fpm \
+			php7-iconv \
+			php7-json \
+			php7-mbstring \
+			php7-mysqli \
+			php7-session \
 			telegraf; \
 		mkdir -p /etc/telegraf
 

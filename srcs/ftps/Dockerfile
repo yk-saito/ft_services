@@ -21,8 +21,8 @@ RUN set -eux; \
 		mkdir -p /etc/telegraf/
 
 RUN set -eux; \
-    	adduser -D admin42; \
-    	echo "admin42:admin42" | chpasswd
+		adduser -D admin42; \
+		echo "admin42:admin42" | chpasswd
 
 COPY ./srcs/vsftpd.conf /etc/vsftpd/
 COPY ./srcs/setup.sh /tmp/
