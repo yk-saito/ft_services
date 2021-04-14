@@ -15,7 +15,8 @@ FROM alpine:latest
 RUN set -eux; \
         apk update; \
         apk add --no-cache \
-            mysql mysql-client \
+            mysql \
+            mysql-client \
             telegraf; \
         mkdir -p /etc/telegraf/
 

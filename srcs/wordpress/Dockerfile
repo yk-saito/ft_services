@@ -13,20 +13,30 @@
 FROM alpine:latest
 
 RUN	set -eux; \
-		apk update && \
+		apk update; \
 		apk add --no-cache \
+			mysql-client \
 			nginx \
 			openssl \
-			php7-curl php7-dom  php7-exif php7-fileinfo php-fpm php7-iconv php7-json php7-mysqli php7-phar php7-xml php7-zip\
-			mysql-client \
+			php7-curl \
+			php7-dom \
+			php7-exif \
+			php7-fileinfo \
+			php-fpm \
+			php7-iconv \
+			php7-json \
+			php7-mysqli \
+			php7-phar \
+			php7-xml \
+			php7-zip \
 			telegraf; \
 		mkdir -p /etc/telegraf
 
 # Install wordpress
-RUN set -eux; \
-		wget http://wordpress.org/latest.tar.gz; \
-		tar -xzvf latest.tar.gz -C /var/www/; \
-		rm -r latest.tar.gz
+#RUN set -eux; \
+#		wget http://wordpress.org/latest.tar.gz; \
+#		tar -xzvf latest.tar.gz -C /var/www/; \
+#		rm -r latest.tar.gz
 
 # Install WP-CLI
 RUN set -eux; \

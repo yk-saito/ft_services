@@ -15,7 +15,8 @@ RUN set -eux; \
 		apk update; \
 		apk add --no-cache \
 			nginx \
-			openssh openssl \
+			openssh \
+			openssl \
 			telegraf; \
 		mkdir -p /etc/telegraf
 
