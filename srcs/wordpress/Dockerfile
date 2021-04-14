@@ -23,10 +23,10 @@ RUN	set -eux; \
 		mkdir -p /etc/telegraf
 
 # Install wordpress
-#RUN set -eux; \
-#		wget http://wordpress.org/latest.tar.gz; \
-#		tar -xzvf latest.tar.gz -C /var/www/; \
-#		rm -r latest.tar.gz
+RUN set -eux; \
+		wget http://wordpress.org/latest.tar.gz; \
+		tar -xzvf latest.tar.gz -C /var/www/; \
+		rm -r latest.tar.gz
 
 # Install WP-CLI
 RUN set -eux; \

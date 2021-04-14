@@ -30,6 +30,15 @@ spec:
         - containerPort: 21008
         - containerPort: 21009
         - containerPort: 21010
+        livenessProbe:
+          exec:
+            command:
+            - cat
+            - /tmp/setup.sh
+          initialDelaySeconds: 60
+          periodSeconds: 5
+          timeoutSeconds: 10
+          failureThreshold: 3
 ---
 
 apiVersion: v1

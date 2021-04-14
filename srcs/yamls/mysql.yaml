@@ -26,6 +26,15 @@ spec:
         volumeMounts:
         - name: mysql-pvc
           mountPath: /var/lib/mysql
+        livenessProbe:
+          exec:
+            command:
+            - cat
+            - /tmp/setup.sh
+          initialDelaySeconds: 60
+          periodSeconds: 5
+          timeoutSeconds: 10
+          failureThreshold: 3
 ---
 
 apiVersion: v1

@@ -1,24 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: grafana-deploy
+  name: grafana-deploy
 spec:
- replicas:	1
- selector:
-  matchLabels:
-   app: grafana
- template:
-  metadata:
-   name: grafana-pod
-   labels:
-    app: grafana
-  spec:
-   containers:
-   - name: grafana
-     image: grafana:ysaito
-     imagePullPolicy: Never
-     ports:
-     - containerPort: 3000
+  replicas:	1
+  selector:
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      name: grafana-pod
+      labels:
+        app: grafana
+    spec:
+      containers:
+      - name: grafana
+        image: grafana:ysaito
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 3000
+        livenessProbe:
+          exec:
+            command:
+            - cat
+            - /tmp/setup.sh
+          initialDelaySeconds: 60
+          periodSeconds: 5
+          timeoutSeconds: 10
+          failureThreshold: 3
 ---
 
 apiVersion: v1
