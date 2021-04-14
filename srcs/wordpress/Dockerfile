@@ -40,17 +40,12 @@ COPY ./srcs/nginx.conf /etc/nginx/
 COPY ./srcs/www.conf /etc/php7/php-fpm.d/
 COPY ./srcs/setup.sh /tmp/
 
-RUN chmod 755 /tmp/setup.sh
-
 EXPOSE 5050
 
-CMD ["/tmp/setup.sh"]
+CMD ["/bin/sh", "/tmp/setup.sh"]
 
-
-##memo
-# mkdir /run/php/
-
-# vi /etc/php7/php-fpm.d/www.conf
-
-# usr/sbin/php-fpm7;
-# killall -KILL php-fpm7;
+# memo
+#mkdir /run/php/
+#vi /etc/php7/php-fpm.d/www.conf
+#usr/sbin/php-fpm7;
+#killall -KILL php-fpm7;

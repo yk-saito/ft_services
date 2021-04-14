@@ -27,8 +27,6 @@ RUN set -eux; \
 COPY ./srcs/vsftpd.conf /etc/vsftpd/
 COPY ./srcs/setup.sh /tmp/
 
-RUN chmod 755 /tmp/setup.sh
-
-CMD ["/tmp/setup.sh"]
-
 EXPOSE 21 21000-21010
+
+CMD ["bin/sh", "/tmp/setup.sh"]

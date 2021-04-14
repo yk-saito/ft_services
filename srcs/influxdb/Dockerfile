@@ -21,8 +21,6 @@ RUN set -eux; \
 
 COPY ./srcs/setup.sh /tmp/
 
-RUN chmod 755 /tmp/setup.sh
-
 EXPOSE 8086
 
-CMD ["/tmp/setup.sh"]
+CMD ["/bin/sh", "/tmp/setup.sh"]

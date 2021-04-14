@@ -37,8 +37,6 @@ COPY ./srcs/www.conf /etc/php7/php-fpm.d/
 COPY ./srcs/config.inc.php /var/www//phpmyadmin/
 COPY ./srcs/setup.sh /tmp/
 
-RUN chmod 755 /tmp/setup.sh
-
 EXPOSE 5000
 
-CMD ["/tmp/setup.sh"]
+CMD ["/bin/sh", "/tmp/setup.sh"]

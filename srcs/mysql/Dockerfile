@@ -22,8 +22,6 @@ RUN set -eux; \
 COPY ./srcs/my.cnf /etc/
 COPY ./srcs/setup.sh ./srcs/init.sql /tmp/
 
-RUN chmod 755 /tmp/setup.sh
-
 EXPOSE 3306
 
-CMD ["/tmp/setup.sh"]
+CMD ["bin/sh", "/tmp/setup.sh"]

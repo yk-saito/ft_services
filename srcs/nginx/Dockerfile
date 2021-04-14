@@ -29,8 +29,6 @@ COPY ./srcs/index.html /var/www/
 COPY ./srcs/sshd_config /etc/ssh/
 COPY ./srcs/setup.sh /tmp/
 
-RUN chmod 755 /tmp/setup.sh
-
 EXPOSE 80 443 22
 
-CMD ["/tmp/setup.sh"]
+CMD ["/bin/sh", "/tmp/setup.sh"]
