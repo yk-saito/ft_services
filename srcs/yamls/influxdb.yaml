@@ -28,7 +28,7 @@ spec:
           mountPath: /var/lib/influxdb
         envFrom:
         - secretRef:
-            name: influxdb-creds
+          name: influxdb-creds
         livenessProbe:
           exec:
             command:
@@ -49,7 +49,8 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-  - port: 8086
+  - name: influxdb
+    port: 8086
     targetPort: 8086
   selector:
     app: influxdb

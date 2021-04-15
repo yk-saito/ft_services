@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ysaito <ysaito@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/04/06 17:32:09 by ysaito            #+#    #+#              #
-#    Updated: 2021/04/13 16:39:03 by ysaito           ###   ########.fr        #
+#    Created: 2021/03/05 17:31:14 by ysaito            #+#    #+#              #
+#    Updated: 2021/04/15 20:22:07 by ysaito           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,9 @@ RUN set -eux;\
 			php7-mbstring \
 			php7-mysqli \
 			php7-session \
-			telegraf
+			telegraf; \
+		mkdir /run/nginx/; \
+		mkdir /run/php/
 #		mkdir -p /etc/telegraf
 
 # Install phpmyadmin
@@ -33,12 +35,16 @@ RUN set -eux; \
 		wget https://files.phpmyadmin.net/phpMyAdmin/5.0.4/phpMyAdmin-5.0.4-all-languages.tar.gz; \
 		tar -xzvf phpMyAdmin-5.0.4-all-languages.tar.gz\
 			--strip-components=1 -C /var/www//phpmyadmin/; \
-		rm -r phpMyAdmin-5.0.4-all-languages.tar.gz
+		rm -r phpMyAdmin-5.0.4-all-languages.tar.gz; \
+		chown -R nginx:nginx /var/www/
 
-#nginx setting file
+# Setup telegraf.conf
+RUN set -eux; \
+		telegraf config --input-filter cpu:mem --output-filter influxdb > /etc/telegraf.conf; \
+		sed -i -e 's|hostname = ""|hostname = "phpmyadmin"|g' /etc/telegraf.conf; \
+		sed -i -e 's|# urls = \["http://127.0.0.1:8086"\]|urls = \["http://influxdb-svc:8086"\]|g' /etc/telegraf.conf
+
 COPY ./srcs/nginx.conf /etc/nginx/
-
-#phpmyadmin setting file
 COPY ./srcs/www.conf /etc/php7/php-fpm.d/
 COPY ./srcs/config.inc.php /var/www//phpmyadmin/
 COPY ./srcs/setup.sh /tmp/

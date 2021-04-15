@@ -19,6 +19,9 @@ spec:
         imagePullPolicy: Never
         ports:
         - containerPort: 3000
+        envFrom:
+        - secretRef:
+          name: grafana-creds
         livenessProbe:
           exec:
             command:
@@ -42,7 +45,8 @@ spec:
   type: LoadBalancer
   loadBalancerIP: 192.168.49.2
   ports:
-  - port: 3000
+  - name: grafana
+    port: 3000
     targetPort: 3000
   selector:
     app: grafana

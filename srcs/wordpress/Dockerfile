@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ysaito <ysaito@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/04/06 17:32:19 by ysaito            #+#    #+#              #
-#    Updated: 2021/04/15 20:05:46 by ysaito           ###   ########.fr        #
+#    Created: 2021/03/06 17:32:19 by ysaito            #+#    #+#              #
+#    Updated: 2021/04/15 20:19:50 by ysaito           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,9 @@ RUN	set -eux; \
 			php7-phar \
 			php7-xml \
 			php7-zip \
-			telegraf
+			telegraf; \
+		mkdir /run/nginx/; \
+		mkdir /run/php/
 #		mkdir -p /etc/telegraf
 
 # Install WP-CLI & wordpress
@@ -39,6 +41,12 @@ RUN set -eux; \
 		mv wp-cli.phar /usr/local/bin/wp; \
 		wp core download --path=/var/www/wordpress/ --locale=ja; \
 		chown -R nginx:nginx /var/www/wordpress/
+
+# Setup telegraf.conf
+RUN set -eux; \
+		telegraf config --input-filter cpu:mem --output-filter influxdb > /etc/telegraf.conf; \
+		sed -i -e 's|hostname = ""|hostname = "wordpress"|g' /etc/telegraf.conf; \
+		sed -i -e 's|# urls = \["http://127.0.0.1:8086"\]|urls = \["http://influxdb-svc:8086"\]|g' /etc/telegraf.conf
 
 COPY ./srcs/nginx.conf /etc/nginx/
 COPY ./srcs/www.conf /etc/php7/php-fpm.d/

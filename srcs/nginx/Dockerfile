@@ -1,11 +1,12 @@
-# *********************************************************************#                                                                              #
+# **************************************************************************** #
+#                                                                              #
 #                                                         :::      ::::::::    #
 #    Dockerfile                                         :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: ysaito <ysaito@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/04/06 17:30:57 by ysaito            #+#    #+#              #
-#    Updated: 2021/04/07 16:50:43 by ysaito           ###   ########.fr        #
+#    Created: 2021/03/05 17:35:10 by ysaito            #+#    #+#              #
+#    Updated: 2021/04/15 20:24:11 by ysaito           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,13 +18,20 @@ RUN set -eux; \
 			nginx \
 			openssh \
 			openssl \
-			telegraf
+			telegraf; \
+		mkdir -p /run/nginx/
 #		mkdir -p /etc/telegraf
 
 RUN set -eux; \
 		/usr/bin/ssh-keygen -A; \
     	adduser -D admin42; \
     	echo "admin42:admin42" | chpasswd
+
+# Setup telegraf.conf
+RUN set -eux; \
+		telegraf config --input-filter cpu:mem --output-filter influxdb > /etc/telegraf.conf; \
+		sed -i -e 's|hostname = ""|hostname = "nginx"|g' /etc/telegraf.conf; \
+		sed -i -e 's|# urls = \["http://127.0.0.1:8086"\]|urls = \["http://influxdb-svc:8086"\]|g' /etc/telegraf.conf
 
 COPY ./srcs/nginx.conf /etc/nginx/
 COPY ./srcs/index.html /var/www/
