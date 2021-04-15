@@ -24,6 +24,7 @@
         "dashLength": 10,
         "dashes": false,
         "datasource": "InfluxDB",
+        "description": "",
         "fieldConfig": {
           "defaults": {
             "custom": {}
@@ -66,6 +67,7 @@
         "steppedLine": false,
         "targets": [
           {
+            "alias": "system",
             "groupBy": [
               {
                 "params": [
@@ -75,12 +77,12 @@
               },
               {
                 "params": [
-                  "null"
+                  "none"
                 ],
                 "type": "fill"
               }
             ],
-            "measurement": "mem",
+            "measurement": "cpu",
             "orderByTime": "ASC",
             "policy": "default",
             "queryType": "randomWalk",
@@ -90,7 +92,7 @@
               [
                 {
                   "params": [
-                    "value"
+                    "usage_system"
                   ],
                   "type": "field"
                 },
@@ -113,7 +115,7 @@
         "timeFrom": null,
         "timeRegions": [],
         "timeShift": null,
-        "title": "Memory Usage",
+        "title": "CPU",
         "tooltip": {
           "shared": true,
           "sort": 0,
@@ -164,6 +166,6 @@
     "timepicker": {},
     "timezone": "",
     "title": "wordpress",
-    "uid": "ugbLFHuMz",
+    "uid": "cPDrqcXGz",
     "version": 1
   }

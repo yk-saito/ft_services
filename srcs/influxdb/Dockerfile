@@ -10,14 +10,14 @@
 #                                                                              #
 # **************************************************************************** #
 
-FROM alpine:latest
+FROM alpine:3.13
 
 RUN set -eux; \
 		apk update; \
 		apk add --no-cache \
 			influxdb \
-			telegraf; \
-		mkdir -p /etc/telegraf
+			telegraf
+#		mkdir -p /etc/telegraf
 
 COPY ./srcs/setup.sh /tmp/
 

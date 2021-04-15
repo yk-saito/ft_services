@@ -15,7 +15,7 @@
     "editable": true,
     "gnetId": null,
     "graphTooltip": 0,
-    "id": 5,
+    "id": 1,
     "links": [],
     "panels": [
       {
@@ -106,7 +106,7 @@
               {
                 "key": "host",
                 "operator": "=",
-                "value": "phpmyadmin"
+                "value": "nginx"
               }
             ]
           }
@@ -165,7 +165,7 @@
     },
     "timepicker": {},
     "timezone": "",
-    "title": "phpmyadmin",
-    "uid": "ZBnw35uMk",
+    "title": "nginx",
+    "uid": "17JEBcuMz",
     "version": 1
   }

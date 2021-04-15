@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-FROM alpine:latest
+FROM alpine:3.13
 
 RUN set -eux;\
 		apk update; \
@@ -24,8 +24,8 @@ RUN set -eux;\
 			php7-mbstring \
 			php7-mysqli \
 			php7-session \
-			telegraf; \
-		mkdir -p /etc/telegraf
+			telegraf
+#		mkdir -p /etc/telegraf
 
 # Install phpmyadmin
 RUN set -eux; \

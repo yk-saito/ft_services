@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-FROM alpine:latest
+FROM alpine:3.13
 
 ENV GRAFANA_VER=7.4.3
 
@@ -31,15 +31,14 @@ RUN set -eux; \
 		mkdir /lib64 && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2
 
 COPY ./srcs/datasources/datasource.yaml /var/lib/grafana/conf/provisioning/datasources/
-COPY ./srcs/dashboards/dashboard.yaml /var/lib/grafana/conf/provisioning/dashboards
-COPY ./srcs/dashboards/ftps.json /var/lib/grafana/conf/provisioning/dashboards
-COPY ./srcs/dashboards/grafana.json /var/lib/grafana/conf/provisioning/dashboards
-#COPY ./srcs/dashboards/influxdb.json /var/lib/grafana/conf/provisioning/dashboards
-#COPY ./srcs/dashboards/mysql.json /var/lib/grafana/conf/provisioning/dashboards
-#COPY ./srcs/dashboards/nginx.json /var/lib/grafana/conf/provisioning/dashboards/nginx.json
-COPY ./srcs/dashboards/phpmyadmin.json /var/lib/grafana/conf/provisioning/dashboards/phpmyadmin.json
-COPY ./srcs/dashboards/wordpress.json /var/lib/grafana/conf/provisioning/dashboards
-
+COPY ./srcs/dashboards/dashboard.yaml /var/lib/grafana/conf/provisioning/dashboards/
+COPY ./srcs/dashboards/ftps.json /var/lib/grafana/conf/provisioning/dashboards/
+COPY ./srcs/dashboards/grafana.json /var/lib/grafana/conf/provisioning/dashboards/
+COPY ./srcs/dashboards/influxdb.json /var/lib/grafana/conf/provisioning/dashboards/
+COPY ./srcs/dashboards/mysql.json /var/lib/grafana/conf/provisioning/dashboards/
+COPY ./srcs/dashboards/nginx.json /var/lib/grafana/conf/provisioning/dashboards/
+COPY ./srcs/dashboards/phpmyadmin.json /var/lib/grafana/conf/provisioning/dashboards/
+COPY ./srcs/dashboards/wordpress.json /var/lib/grafana/conf/provisioning/dashboards/
 COPY ./srcs/setup.sh /tmp/
 
 EXPOSE 3000

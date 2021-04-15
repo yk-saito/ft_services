@@ -9,7 +9,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-FROM alpine:latest
+FROM alpine:3.13
 
 RUN set -eux; \
 		apk update; \
@@ -17,8 +17,8 @@ RUN set -eux; \
 			nginx \
 			openssh \
 			openssl \
-			telegraf; \
-		mkdir -p /etc/telegraf
+			telegraf
+#		mkdir -p /etc/telegraf
 
 RUN set -eux; \
 		/usr/bin/ssh-keygen -A; \

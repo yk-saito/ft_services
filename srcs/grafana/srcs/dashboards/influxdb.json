@@ -15,7 +15,7 @@
     "editable": true,
     "gnetId": null,
     "graphTooltip": 0,
-    "id": 5,
+    "id": 7,
     "links": [],
     "panels": [
       {
@@ -106,7 +106,7 @@
               {
                 "key": "host",
                 "operator": "=",
-                "value": "phpmyadmin"
+                "value": "influxdb"
               }
             ]
           }
@@ -165,7 +165,7 @@
     },
     "timepicker": {},
     "timezone": "",
-    "title": "phpmyadmin",
-    "uid": "ZBnw35uMk",
+    "title": "influxdb",
+    "uid": "1QsqGtXMz",
     "version": 1
   }
