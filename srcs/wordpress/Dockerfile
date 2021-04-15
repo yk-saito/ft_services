@@ -29,8 +29,8 @@ RUN	set -eux; \
 			php7-phar \
 			php7-xml \
 			php7-zip \
-			telegraf; \
-		mkdir -p /etc/telegraf
+			telegraf
+#		mkdir -p /etc/telegraf
 
 # Install wordpress
 #RUN set -eux; \

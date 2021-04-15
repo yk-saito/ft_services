@@ -15,7 +15,7 @@
     "editable": true,
     "gnetId": null,
     "graphTooltip": 0,
-    "id": 5,
+    "id": 1,
     "links": [],
     "panels": [
       {
@@ -67,6 +67,7 @@
         "steppedLine": false,
         "targets": [
           {
+            "alias": "system",
             "groupBy": [
               {
                 "params": [
@@ -76,12 +77,12 @@
               },
               {
                 "params": [
-                  "null"
+                  "none"
                 ],
                 "type": "fill"
               }
             ],
-            "measurement": "mem",
+            "measurement": "cpu",
             "orderByTime": "ASC",
             "policy": "default",
             "queryType": "randomWalk",
@@ -91,7 +92,7 @@
               [
                 {
                   "params": [
-                    "value"
+                    "usage_system"
                   ],
                   "type": "field"
                 },
@@ -105,7 +106,7 @@
               {
                 "key": "host",
                 "operator": "=",
-                "value": "phpmyadmin"
+                "value": "nginx"
               }
             ]
           }
@@ -114,7 +115,7 @@
         "timeFrom": null,
         "timeRegions": [],
         "timeShift": null,
-        "title": "Memory Usage",
+        "title": "CPU",
         "tooltip": {
           "shared": true,
           "sort": 0,
@@ -164,7 +165,7 @@
     },
     "timepicker": {},
     "timezone": "",
-    "title": "phpmyadmin",
-    "uid": "oc1VFNXMz",
+    "title": "nginx",
+    "uid": "17JEBcuMz",
     "version": 1
   }

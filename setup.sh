@@ -8,7 +8,8 @@ GREEN=$'\e[0;32m'
 COLOR_RESET=$'\e[0m'
 
 # mysql using port
-if $(sudo netstat -nlpt | grep 3306); then
+sudo netstat -nlpt | grep 3306
+if [ $? = 0 ]; then
   sudo service mysql stop
 fi
 
