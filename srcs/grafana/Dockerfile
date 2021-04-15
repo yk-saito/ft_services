@@ -38,7 +38,7 @@ RUN set -eux; \
 
 COPY ./srcs/datasources/datasource.yaml /var/lib/grafana/conf/provisioning/datasources/
 COPY ./srcs/dashboards/dashboard.yaml /var/lib/grafana/conf/provisioning/dashboards/
-COPY ./srcs/dashboards/ftps.json /var/lib/grafana/conf/provisioning/dashboards/
+#COPY ./srcs/dashboards/ftps.json /var/lib/grafana/conf/provisioning/dashboards/
 COPY ./srcs/dashboards/grafana.json /var/lib/grafana/conf/provisioning/dashboards/
 COPY ./srcs/dashboards/influxdb.json /var/lib/grafana/conf/provisioning/dashboards/
 COPY ./srcs/dashboards/mysql.json /var/lib/grafana/conf/provisioning/dashboards/
