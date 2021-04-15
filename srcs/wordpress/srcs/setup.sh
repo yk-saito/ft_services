@@ -1,12 +1,12 @@
 #!bin/sh
 WP_PATH=/var/www/wordpress/
 
-# mysqladmin: connect to server at 'mysql-svc' failed
-# error: 'Unknown MySQL server host 'mysql-svc' (-2)'
-until [[ $(mysqladmin ping -h mysql-svc --silent) ]]
+mysqladmin ping -h mysql-svc --silent
+while [ $? = 1 ]
 do
     echo "Waiting mysql service setup..."
     sleep 10
+    mysqladmin ping -h mysql-svc --silent
 done
 
 if ! $(wp core is-installed); then
