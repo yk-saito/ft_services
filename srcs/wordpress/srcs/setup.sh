@@ -9,16 +9,12 @@ do
     sleep 10
 done
 
-wp core download --path=$WP_PATH --locale=ja
-wp config create --path=$WP_PATH --dbname=wordpress_db --dbuser=admin42 --dbpass=admin42 --dbhost=mysql-svc
-# ERROR 2005 (HY000): Unknown MySQL server host 'mysql_db' (-2)
-#wp db create --path=$WP_PATH
-# ERROR 1007 (HY000) at line 1: Can't create database 'wordpress_db'; database exists
-wp core install --path=$WP_PATH --url=https://192.168.49.2:5050 --title=ft_services --admin_user=admin42 --admin_password=admin42 --admin_email=admin@example.com --skip-email
-wp user create --path=$WP_PATH user1 editor@example.com --role=editor --user_pass=edirot
-wp user create --path=$WP_PATH user2 author@example.com --role=author --user_pass=author
-
-chown -R nginx:nginx /var/www/wordpress/
+if ! $(wp core is-installed); then
+    wp config create --path=$WP_PATH --dbname=wordpress_db --dbuser=admin42 --dbpass=admin42 --dbhost=mysql-svc
+    wp core install --path=$WP_PATH --url=https://192.168.49.2:5050 --title=ft_services --admin_user=admin42 --admin_password=admin42 --admin_email=admin@example.com --skip-email
+    wp user create --path=$WP_PATH user1 editor@example.com --role=editor --user_pass=edirot
+    wp user create --path=$WP_PATH user2 author@example.com --role=author --user_pass=author
+fi
 
 mkdir /run/nginx/
 mkdir /run/php/
@@ -40,3 +36,9 @@ usr/sbin/php-fpm7;
 # Start nginx
 nginx -g 'daemon off;'
 # killall -KILL php-fpm7;
+
+# memo
+#mkdir /run/php/
+#vi /etc/php7/php-fpm.d/www.conf
+#usr/sbin/php-fpm7;
+#killall -KILL php-fpm7;
