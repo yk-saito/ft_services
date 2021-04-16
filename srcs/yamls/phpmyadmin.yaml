@@ -22,8 +22,9 @@ spec:
         livenessProbe:
           exec:
             command:
-            - cat
-            - /tmp/setup.sh
+            - /bin/sh
+            - -c
+            - 'grep telegraf && pgrep nginx: master && pgrep nginx:worker && pgrep php'
           initialDelaySeconds: 60
           periodSeconds: 5
           timeoutSeconds: 10
