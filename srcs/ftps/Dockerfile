@@ -33,6 +33,6 @@ RUN set -eux; \
 COPY ./srcs/vsftpd.conf /etc/vsftpd/
 COPY ./srcs/setup.sh /tmp/
 
-EXPOSE 21 21000-21010
+EXPOSE 20 21 21000-21010
 
 CMD ["bin/sh", "/tmp/setup.sh"]

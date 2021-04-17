@@ -10,7 +10,7 @@ openssl req -new -newkey rsa:2048 -nodes -days 365 -x509 \
 telegraf --config /etc/telegraf.conf &
 
 # Start SSH
-/usr/sbin/sshd
+#/usr/sbin/sshd
 
 # Start ftps
 /usr/sbin/vsftpd /etc/vsftpd/vsftpd.conf
