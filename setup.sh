@@ -49,7 +49,7 @@ kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/${METALLB_VER
 kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 
 kubectl apply -f ./srcs/yamls/metallb-config.yaml
-kubectl apply -f ./srcs/yamls/pvc.yaml
+#kubectl apply -f ./srcs/yamls/pvc.yaml
 kubectl apply -f ./srcs/yamls/nginx.yaml
 kubectl apply -f ./srcs/yamls/mysql.yaml
 kubectl apply -f ./srcs/yamls/phpmyadmin.yaml
