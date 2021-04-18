@@ -106,8 +106,11 @@ spec:
   - name: pasv-21009
     port: 21009
     targetPort: 21009
+<<<<<<< HEAD
   - name: pasv-21010
     port: 21010
     targetPort: 21010
+=======
+>>>>>>> 5347c3071ea8fc67b86c9a767c4bab8cff5416d8
   selector:
     app: ftps
