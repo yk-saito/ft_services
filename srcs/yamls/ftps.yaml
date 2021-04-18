@@ -34,13 +34,14 @@ spec:
         image: ftps:ysaito
         imagePullPolicy: Never
         ports:
+        - containerPort: 20
         - containerPort: 21
         - containerPort: 50000
         - containerPort: 50001
         - containerPort: 50002
         volumeMounts:
         - name: ftps-volume
-          mountPath: /var/lib/ftps
+          mountPath: /home
         livenessProbe:
           exec:
             command:
@@ -65,17 +66,20 @@ spec:
   type: LoadBalancer
   loadBalancerIP: 192.168.49.2
   ports:
+  - name: ftp-data
+    port: 20
+    targetPort: 20
   - name: ftp-control
     port: 21
     targetPort: 21
-  - name: pasv-50000
-    port: 50000
-    targetPort: 50000
-  - name: pasv-50001
-    port: 50001
-    targetPort: 50001
-  - name: pasv-50002
-    port: 50002
-    targetPort: 50002
+  - name: pasv-21000
+    port: 21000
+    targetPort: 21000
+  - name: pasv-21001
+    port: 21001
+    targetPort: 21001
+  - name: pasv-21002
+    port: 21002
+    targetPort: 21002
   selector:
     app: ftps

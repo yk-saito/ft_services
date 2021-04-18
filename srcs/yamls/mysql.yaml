@@ -37,7 +37,7 @@ spec:
         - containerPort: 3306
         volumeMounts:
         - name: mysql-volume
-          mountPath: /root
+          mountPath: /var/lib/mysql
         livenessProbe:
           exec:
             command:

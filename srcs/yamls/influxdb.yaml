@@ -37,7 +37,7 @@ spec:
         - containerPort: 8086
         volumeMounts:
         - name: influxdb-volume
-          mountPath: /var/lib/influxdb
+          mountPath: /root
         envFrom:
         - secretRef:
             name: influxdb-creds
