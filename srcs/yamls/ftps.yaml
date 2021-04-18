@@ -46,6 +46,7 @@ spec:
         - containerPort: 21007
         - containerPort: 21008
         - containerPort: 21009
+        - containerPort: 21010
         volumeMounts:
         - name: ftps-volume
           mountPath: /home
@@ -79,6 +80,9 @@ spec:
   - name: ftp-control
     port: 21
     targetPort: 21
+  - name: pasv-21000
+    port: 21000
+    targetPort: 21000
   - name: pasv-21001
     port: 21001
     targetPort: 21001
@@ -106,11 +110,8 @@ spec:
   - name: pasv-21009
     port: 21009
     targetPort: 21009
-<<<<<<< HEAD
   - name: pasv-21010
     port: 21010
     targetPort: 21010
-=======
->>>>>>> 5347c3071ea8fc67b86c9a767c4bab8cff5416d8
   selector:
     app: ftps
