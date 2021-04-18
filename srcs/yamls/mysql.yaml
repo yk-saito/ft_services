@@ -5,7 +5,6 @@ metadata:
 spec:
   accessModes:
   - ReadWriteOnce
-  storageClassName: standard
   resources:
     requests:
       storage: 2Gi
@@ -38,7 +37,7 @@ spec:
         - containerPort: 3306
         volumeMounts:
         - name: mysql-volume
-          mountPath: /var/lib/mysql
+          mountPath: /root
         livenessProbe:
           exec:
             command:

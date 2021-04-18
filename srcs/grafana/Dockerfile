@@ -22,13 +22,18 @@ RUN set -eux; \
 			telegraf
 #		mkdir -p /etc/telegraf/
 
-#  Install & Setup grafana
+#  Install grafana
 RUN set -eux; \
 		wget https://dl.grafana.com/enterprise/release/grafana-enterprise-${GRAFANA_VER}.linux-amd64.tar.gz; \
 		mkdir -p /var/lib/grafana; \
 		tar -zxvf grafana-enterprise-${GRAFANA_VER}.linux-amd64.tar.gz --strip-components=1 -C /var/lib/grafana/; \
 		rm -r grafana-enterprise-${GRAFANA_VER}.linux-amd64.tar.gz; \
 		mkdir /lib64 && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2
+
+# Setup grafana
+RUN set -eux; \
+		sed -i -e "s|cert_file =|cert_file = /etc/ssl/certs/services.crt|g" /var/lib/grafana/conf/defaults.ini; \
+		sed -i -e "s|cert_key =|cert_key = /etc/ssl/private/services.key|g" /var/lib/grafana/conf/defaults.ini
 
 # Setup telegraf.conf
 RUN set -eux; \
