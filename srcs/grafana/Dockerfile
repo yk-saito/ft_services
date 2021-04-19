@@ -6,7 +6,7 @@
 #    By: ysaito <ysaito@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/09 17:31:42 by ysaito            #+#    #+#              #
-#    Updated: 2021/04/15 20:32:06 by ysaito           ###   ########.fr        #
+#    Updated: 2021/04/19 15:21:16 by ysaito           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,6 @@ RUN set -eux; \
 			wget \
 			openssl \
 			telegraf
-#		mkdir -p /etc/telegraf/
 
 #  Install grafana
 RUN set -eux; \

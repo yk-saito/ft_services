@@ -6,7 +6,7 @@
 #    By: ysaito <ysaito@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/05 17:35:10 by ysaito            #+#    #+#              #
-#    Updated: 2021/04/15 20:24:11 by ysaito           ###   ########.fr        #
+#    Updated: 2021/04/19 15:20:57 by ysaito           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,6 @@ RUN set -eux; \
 			openssl \
 			telegraf; \
 		mkdir -p /run/nginx/
-#		mkdir -p /etc/telegraf
 
 RUN set -eux; \
 		/usr/bin/ssh-keygen -A; \

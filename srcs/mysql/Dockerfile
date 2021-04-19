@@ -6,7 +6,7 @@
 #    By: ysaito <ysaito@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/06 17:31:35 by ysaito            #+#    #+#              #
-#    Updated: 2021/04/15 20:28:53 by ysaito           ###   ########.fr        #
+#    Updated: 2021/04/19 15:20:47 by ysaito           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,6 @@ RUN set -eux; \
 			mysql \
 			mysql-client \
 			telegraf
-		#mkdir -p /etc/telegraf/
 
 # Setup telegraf.conf
 RUN set -eux; \
