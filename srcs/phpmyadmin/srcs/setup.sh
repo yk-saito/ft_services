@@ -11,4 +11,3 @@ usr/sbin/php-fpm7;
 
 # Start nginx
 nginx -g 'daemon off;'
-# killall -KILL php-fpm7;

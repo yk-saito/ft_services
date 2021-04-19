@@ -6,7 +6,7 @@
 #    By: ysaito <ysaito@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/06 17:32:19 by ysaito            #+#    #+#              #
-#    Updated: 2021/04/15 20:19:50 by ysaito           ###   ########.fr        #
+#    Updated: 2021/04/19 15:17:32 by ysaito           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,6 @@ RUN	set -eux; \
 			telegraf; \
 		mkdir /run/nginx/; \
 		mkdir /run/php/
-#		mkdir -p /etc/telegraf
 
 # Install WP-CLI & wordpress
 RUN set -eux; \
