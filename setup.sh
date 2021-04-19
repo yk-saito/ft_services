@@ -20,6 +20,7 @@ minikube start --driver=docker
 #sudo chmod -R 777 ~/.minikube
 #sudo chmod -R 777 ~/.kube
 
+# Configure environment to use minikube’s Docker daemon
 eval $(minikube docker-env)
 
 docker build -t nginx:ysaito ./srcs/nginx
