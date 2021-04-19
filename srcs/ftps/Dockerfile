@@ -19,9 +19,17 @@ RUN set -eux; \
 			openssl \
 			telegraf
 
-RUN set -eux; \
-		adduser -D admin42; \
-		echo "admin42:admin42" | chpasswd
+#RUN set -eux; \
+#		adduser -D admin42; \
+#		echo "admin42:admin42" | chpasswd
+
+# ftps setup
+#RUN mkdir -p /etc/ftps/ftp_user; \
+#RUN	adduser --home=/etc/ftps/ftp_user -D admin42; \
+RUN	adduser -D admin42; \
+	echo "admin42:admin42" | chpasswd; \
+	echo "admin42" >> /etc/vsftpd/user_list; \
+	echo "admin42" >> /etc/vsftpd/chroot_list
 
 # Setup telegraf.conf
 RUN set -eux; \
@@ -32,6 +40,6 @@ RUN set -eux; \
 COPY ./srcs/vsftpd.conf /etc/vsftpd/
 COPY ./srcs/setup.sh /tmp/
 
-EXPOSE 20 21 21000-21010
+EXPOSE 21 50000-50003
 
 CMD ["bin/sh", "/tmp/setup.sh"]
