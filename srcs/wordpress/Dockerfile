@@ -47,7 +47,7 @@ RUN set -eux; \
 		sed -i -e 's|hostname = ""|hostname = "wordpress"|g' /etc/telegraf.conf; \
 		sed -i -e 's|# urls = \["http://127.0.0.1:8086"\]|urls = \["http://influxdb-svc:8086"\]|g' /etc/telegraf.conf
 
-COPY ./srcs/nginx.conf /etc/nginx/
+COPY ./srcs/default.conf /etc/nginx/conf.d/
 COPY ./srcs/www.conf /etc/php7/php-fpm.d/
 COPY ./srcs/setup.sh /tmp/
 

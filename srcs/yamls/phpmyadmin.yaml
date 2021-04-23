@@ -24,7 +24,7 @@ spec:
             command:
             - /bin/sh
             - -c
-            - 'pgrep telegraf && pgrep "nginx: master" && pgrep "nginx: worker" && pgrep php'
+            - 'pgrep telegraf && pgrep nginx && pgrep php-fpm'
           initialDelaySeconds: 60
           periodSeconds: 5
           timeoutSeconds: 10
@@ -39,9 +39,8 @@ metadata:
     metallb.universe.tf/allow-shared-ip: ft_services
 spec:
   type: LoadBalancer
-  loadBalancerIP: 192.168.49.2
   ports:
-  - name: phpmyadmin
+  - name: https
     port: 5000
     targetPort: 5000
   selector:

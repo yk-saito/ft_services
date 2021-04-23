@@ -41,7 +41,7 @@ spec:
         - containerPort: 50003
         volumeMounts:
         - name: ftps-volume
-          mountPath: /home
+          mountPath: /var/www
         livenessProbe:
           exec:
             command:
@@ -64,7 +64,6 @@ metadata:
     app: ftps
 spec:
   type: LoadBalancer
-  loadBalancerIP: 192.168.49.2
   ports:
   - name: ftp-control
     port: 21

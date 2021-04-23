@@ -19,17 +19,15 @@ RUN set -eux; \
 			openssl \
 			telegraf
 
-#RUN set -eux; \
-#		adduser -D admin42; \
-#		echo "admin42:admin42" | chpasswd
-
 # ftps setup
-#RUN mkdir -p /etc/ftps/ftp_user; \
-#RUN	adduser --home=/etc/ftps/ftp_user -D admin42; \
-RUN	adduser -D admin42; \
-	echo "admin42:admin42" | chpasswd; \
-	echo "admin42" >> /etc/vsftpd/user_list; \
-	echo "admin42" >> /etc/vsftpd/chroot_list
+RUN set -eux; \
+		#mkdir -p /etc/ftps/admin42/; \
+		#adduser --home=/etc/ftps/admin42 -D admin42; \
+		adduser --home=/var/www/ -D admin42; \
+		echo "admin42:admin42" | chpasswd; \
+		mkdir -p /etc/vsftpd/; \
+		echo "admin42" >> /etc/vsftpd/user_list; \
+		echo "admin42" >> /etc/vsftpd/chroot_list
 
 # Setup telegraf.conf
 RUN set -eux; \
