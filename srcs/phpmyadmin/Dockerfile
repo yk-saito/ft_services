@@ -27,7 +27,6 @@ RUN set -eux;\
 			telegraf; \
 		mkdir /run/nginx/; \
 		mkdir /run/php/
-#		mkdir -p /etc/telegraf
 
 # Install phpmyadmin
 RUN set -eux; \
@@ -44,7 +43,7 @@ RUN set -eux; \
 		sed -i -e 's|hostname = ""|hostname = "phpmyadmin"|g' /etc/telegraf.conf; \
 		sed -i -e 's|# urls = \["http://127.0.0.1:8086"\]|urls = \["http://influxdb-svc:8086"\]|g' /etc/telegraf.conf
 
-COPY ./srcs/default.conf /etc/nginx/conf.d/
+COPY ./srcs/nginx.conf /etc/nginx/
 COPY ./srcs/www.conf /etc/php7/php-fpm.d/
 COPY ./srcs/config.inc.php /var/www//phpmyadmin/
 COPY ./srcs/setup.sh /tmp/

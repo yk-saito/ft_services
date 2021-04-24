@@ -21,8 +21,6 @@ RUN set -eux; \
 
 # ftps setup
 RUN set -eux; \
-		#mkdir -p /etc/ftps/admin42/; \
-		#adduser --home=/etc/ftps/admin42 -D admin42; \
 		adduser --home=/var/www/ -D admin42; \
 		echo "admin42:admin42" | chpasswd; \
 		mkdir -p /etc/vsftpd/; \

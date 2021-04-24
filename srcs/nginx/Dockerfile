@@ -32,7 +32,7 @@ RUN set -eux; \
 		sed -i -e 's|hostname = ""|hostname = "nginx"|g' /etc/telegraf.conf; \
 		sed -i -e 's|# urls = \["http://127.0.0.1:8086"\]|urls = \["http://influxdb-svc:8086"\]|g' /etc/telegraf.conf
 
-COPY ./srcs/default.conf /etc/nginx/conf.d/
+COPY ./srcs/nginx.conf /etc/nginx/
 COPY ./srcs/index.html /var/www/
 COPY ./srcs/sshd_config /etc/ssh/
 COPY ./srcs/setup.sh /tmp/

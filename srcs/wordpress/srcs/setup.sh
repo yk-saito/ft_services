@@ -27,8 +27,3 @@ usr/sbin/php-fpm7;
 
 # Start nginx
 nginx -g 'daemon off;'
-
-#mkdir /run/php/
-#vi /etc/php7/php-fpm.d/www.conf
-#usr/sbin/php-fpm7;
-#killall -KILL php-fpm7;
